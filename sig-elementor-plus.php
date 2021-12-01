@@ -119,3 +119,15 @@ if ( ! class_exists( 'SIG_Elementor_Plus' ) ) {
     new SIG_Elementor_Plus();
 }
 
+function add_elementor_widget_categories( $elements_manager ) {
+
+	$elements_manager->add_category(
+		'first-category',
+		[
+			'title' => __( 'First Category', 'plugin-name' ),
+			'icon' => 'fa fa-plug',
+		]
+	);
+
+}
+add_action( 'elementor/elements/categories_registered', 'add_elementor_widget_categories',9 );

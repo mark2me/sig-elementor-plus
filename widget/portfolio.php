@@ -2,8 +2,10 @@
 
 //namespace Elementor;
 
-use Elementor\Controls_Manager;
-use Elementor\Group_Control_Typography;
+//use Elementor\Controls_Manager;
+//use Elementor\Scheme_Color;
+//use Elementor\Group_Control_Typography;
+
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
@@ -20,7 +22,7 @@ class SIG_Portfolio extends SIG_Base {
     }
 
     public function get_title() {
-        return 'SIG 文章作品集';
+        return 'SIG';
     }
 
     public function get_icon() {
@@ -28,7 +30,7 @@ class SIG_Portfolio extends SIG_Base {
     }
 
     public function get_categories() {
-        return [ 'general' ];
+        return [ 'first-category' ];
     }
 
     public function get_keywords() {
@@ -39,32 +41,35 @@ class SIG_Portfolio extends SIG_Base {
 
         // section start
         $this->start_controls_section(
-            'sig_section_layout',
+            'sig_section_1',
             [
                 'label' => __( 'Layout', 'elementor' ),
-                'tab' => Controls_Manager::TAB_CONTENT,
+                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
 
         $this->register_controls_text();
 
-        //$this->register_controls_textarea();
+        $this->end_controls_section(); ///
+
+        $this->start_controls_section(
+            'sig_section_2',
+            [
+                'label' => __( 'Layout2', 'elementor' ),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
 
         $this->register_controls_columns();
 
-        //$this->register_controls_media();
 
         $this->register_controls_gallery();
 
-        $this->register_controls_select(
-            'select',
-            [
-                'options' => [
-                    'classic' => __( 'Classic', 'elementor' ),
-                    'pro' => __( 'Pro', 'elementor' )
-                ]
-            ]
-        );
+
+        $this->register_controls_image_size();
+
+
 
         $this->end_controls_section();
     }
