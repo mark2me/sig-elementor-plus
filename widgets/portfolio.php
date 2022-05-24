@@ -39,7 +39,7 @@ class SIG_Portfolio extends SIG_Base {
 
     protected function register_controls() {
 
-        // section start
+        // TAB: content
         $this->start_controls_section(
             'section_title',
 			[
@@ -54,7 +54,7 @@ class SIG_Portfolio extends SIG_Base {
         $this->end_controls_section(); ///
 
 
-        ////
+        // TAB: style
         $this->start_controls_section(
             'sig_section_2',
             [
