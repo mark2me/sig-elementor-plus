@@ -30,28 +30,31 @@ class SIG_Portfolio extends SIG_Base {
     }
 
     public function get_categories() {
-        return [ 'first-category' ];
+        return [ 'sig-category' ];
     }
 
     public function get_keywords() {
         return [ 'posts', 'cpt', 'item', 'loop', 'portfolio', 'custom post type' ];
     }
 
-    protected function _register_controls() {
+    protected function register_controls() {
 
         // section start
         $this->start_controls_section(
-            'sig_section_1',
-            [
-                'label' => __( 'Layout', 'elementor' ),
-                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
-            ]
+            'section_title',
+			[
+				'label' => esc_html__( 'Title', 'sig-elementor-plus' ),
+				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+			]
         );
 
-        $this->register_controls_text();
+        $this->register_controls_text('text1');
+        $this->register_controls_textarea('textarea1');
 
         $this->end_controls_section(); ///
 
+
+        ////
         $this->start_controls_section(
             'sig_section_2',
             [
@@ -104,4 +107,4 @@ class SIG_Portfolio extends SIG_Base {
     }
 }
 
-$widgets_manager->register_widget_type(new SIG_Portfolio());
+$widgets_manager->register(new SIG_Portfolio());

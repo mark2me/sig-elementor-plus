@@ -17,6 +17,17 @@ if ( ! class_exists( 'SIG_Elementor_Plus' ) ) {
 
 	class SIG_Elementor_Plus {
 
+        private static $_instance = null;
+
+        public static function instance() {
+
+            if ( is_null( self::$_instance ) ) {
+                self::$_instance = new self();
+            }
+            return self::$_instance;
+
+        }
+
     	public function __construct() {
 
             add_action( 'plugins_loaded' , function(){
@@ -29,27 +40,29 @@ if ( ! class_exists( 'SIG_Elementor_Plus' ) ) {
 
             if ( is_plugin_active( 'elementor/elementor.php' )  ) {
 
-                //新增自訂 widget
-                add_action( 'elementor/widgets/widgets_registered', array( $this, 'include_widgets' ) );
+                // register widgets
+                add_action( 'elementor/widgets/register', [ $this, 'register_my_widgets' ] );
+
+                // register controls
+                add_action( 'elementor/controls/register', [ $this, 'register_my_controls' ] );
 
                 /*
                     對已存在的 widget 新增新的 control
                     https://code.elementor.com/php-hooks/#elementorelementsection_namesection_idbefore_section_end
                     https://github.com/elementor/elementor/issues/6499
                 */
-                add_action( 'elementor/element/icon-box/section_style_icon/before_section_end', array($this,'ele_add_control') , 10, 2 );
+                add_action( 'elementor/element/icon-box/section_style_icon/before_section_end', array( $this, 'add_my_control' ) , 10, 2 );
 
             }
     	}
 
-    	public function include_widgets(){
 
-            $widgets_manager = \Elementor\Plugin::instance()->widgets_manager;
+    	public function register_my_widgets($widgets_manager){
 
             require_once SIG_ELEMENTOR_PLUS_PATH.'inc/base.php';  //base
 
-        	$files = glob( SIG_ELEMENTOR_PLUS_PATH . 'widget/*.php');
-
+            // 從資料夾 widgets 找
+        	$files = glob( SIG_ELEMENTOR_PLUS_PATH . 'widgets/*.php');
             foreach ($files as $file){
                 if(file_exists($file)){
                     require_once  $file;
@@ -58,7 +71,15 @@ if ( ! class_exists( 'SIG_Elementor_Plus' ) ) {
 
     	}
 
-        public function ele_add_control($element, $args)
+        public function register_my_controls( $controls_manager ) {
+
+            /*
+            require_once( __DIR__ . '/controls/control-1.php' );
+            $controls_manager->register( new Control_1() );
+            */
+        }
+
+        public function add_my_control($element, $args)
         {
 
             $element->add_responsive_control(
@@ -119,12 +140,15 @@ if ( ! class_exists( 'SIG_Elementor_Plus' ) ) {
     new SIG_Elementor_Plus();
 }
 
+/**
+ * add my category
+ */
 function add_elementor_widget_categories( $elements_manager ) {
 
 	$elements_manager->add_category(
-		'first-category',
+		'sig-category',
 		[
-			'title' => __( 'First Category', 'plugin-name' ),
+			'title' => __( 'SIG', 'sig-elementor-plus' ),
 			'icon' => 'fa fa-plug',
 		]
 	);
