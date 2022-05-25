@@ -2,7 +2,7 @@
 
 //namespace Elementor;
 
-//use Elementor\Controls_Manager;
+use Elementor\Controls_Manager;
 //use Elementor\Scheme_Color;
 //use Elementor\Group_Control_Typography;
 
@@ -44,7 +44,7 @@ class SIG_Portfolio extends SIG_Base {
             'section_title',
 			[
 				'label' => esc_html__( 'Title', 'sig-elementor-plus' ),
-				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+				'tab' => Controls_Manager::TAB_CONTENT,
 			]
         );
 
@@ -59,7 +59,7 @@ class SIG_Portfolio extends SIG_Base {
             'sig_section_2',
             [
                 'label' => __( 'Layout2', 'elementor' ),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+                'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
 
