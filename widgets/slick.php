@@ -1,5 +1,10 @@
 <?php
+/*
+    Slick
+    http://kenwheeler.github.io/slick/
+*/
 
+use Elementor\Plugin;
 use Elementor\Controls_Manager;
 use Elementor\Scheme_Color;
 
@@ -14,7 +19,7 @@ class SIG_Slick extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-code';
+		return 'eicon-slider-push';
 	}
 
 	public function get_categories() {
@@ -129,7 +134,7 @@ class SIG_Slick extends \Elementor\Widget_Base {
         $repeater->add_control(
             'slide_content_width',
             [
-                'label' => esc_html__( 'Content width', 'sig-elementor-plus' ),
+                'label' => esc_html__( 'Content width (%)', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ '%' ],
                 'range' => [
@@ -174,17 +179,15 @@ class SIG_Slick extends \Elementor\Widget_Base {
 			]
         );
 
-
         $this->add_control(
             'autoplay',
             [
                 'label' => esc_html__( 'Auto play', 'sig-elementor-plus' ),
-                'type' => Controls_Manager::SELECT,
-                'options' => [
-                    'true' => '自動播放',
-                    'false' => '手動播放'
-                ] ,
-                'default' => 'false',
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => esc_html__( 'On', 'sig-elementor-plus' ),
+				'label_off' => esc_html__( 'Off', 'sig-elementor-plus' ),
+				'return_value' => 'yes',
+                'default' => 'yes',
             ]
         );
 
@@ -198,7 +201,7 @@ class SIG_Slick extends \Elementor\Widget_Base {
                 'step' => 1,
                 'default' => 3,
                 'condition' => [
-					'autoplay' => 'true',
+					'autoplay' => 'yes',
 				],
 
             ]
@@ -206,13 +209,13 @@ class SIG_Slick extends \Elementor\Widget_Base {
 
 
         $this->add_control(
-            'bg_size',
+            'image_size',
             [
-                'label' => esc_html__( 'Background size', 'sig-elementor-plus' ),
+                'label' => esc_html__( 'Image size', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
-                    'cover' => '塞滿容器',
-                    'contain' => '完整顯示'
+                    'cover' => esc_html__( 'Cover', 'sig-elementor-plus' ),
+                    'contain' => esc_html__( 'Contain', 'sig-elementor-plus' )
                 ] ,
                 'default' => 'cover',
                 'selectors' => [
@@ -221,59 +224,26 @@ class SIG_Slick extends \Elementor\Widget_Base {
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'aspect_ratio',
             [
-                'label' => esc_html__( 'Image ratio', 'sig-elementor-plus' ),
+                'label' => esc_html__( 'Aspect ratio', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::SELECT,
                 'options' => [
-                    'fixed' => '固定比例',
-                    'custom' => '自定比例'
-                ] ,
-                'default' => 'fixed',
-            ]
-        );
-
-        $this->add_responsive_control(
-            'fixed_ratio',
-            [
-                'label' => esc_html__( 'Select ratio', 'sig-elementor-plus' ),
-                'type' => Controls_Manager::SELECT,
-                'options' => [
+                    '3 / 1' => '3:1',
                     '2 / 1' => '2:1',
                     '4 / 3' => '4:3',
                     '16 / 9' => '16:9',
                     '1 / 1' => '1:1',
                     '3 / 4' => '3:4',
                     '9 / 16' => '9:16',
-                    '1 / 2' => '1:2'
+                    '1 / 2' => '1:2',
+                    '1 / 3' => '1:3'
                 ] ,
-                'default' => '1 / 1',
-                'condition' => [
-					'aspect_ratio' => 'fixed',
-				],
+                'default' => '4 / 3',
                 'selectors' => [
 					'{{WRAPPER}} .item' => 'aspect-ratio: {{VALUE}};',
 				],
-            ]
-        );
-
-
-        $this->add_responsive_control(
-            'custom_ratio',
-            [
-                'label' => esc_html__( 'Select ratio', 'sig-elementor-plus' ),
-                'type' => Controls_Manager::NUMBER,
-                'min' => 0.1,
-                'max' => 10,
-                'step' => 0.1,
-                'default' => 2,
-                'condition' => [
-					'aspect_ratio' => 'custom',
-				],
-                'selectors' => [
-                    '{{WRAPPER}} .item' => 'aspect-ratio: {{VALUE}};',
-                ],
             ]
         );
 
@@ -302,13 +272,37 @@ class SIG_Slick extends \Elementor\Widget_Base {
             ]
         );
 
+        $this->add_responsive_control(
+            'slidesToShow',
+            [
+                'label' => esc_html__( '# of slides to show', 'sig-elementor-plus' ),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 1,
+                'max' => 10,
+                'step' => 1,
+                'default' => 1,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'slidesToScroll',
+            [
+                'label' => esc_html__( '# of slides to scroll', 'sig-elementor-plus' ),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 1,
+                'max' => 10,
+                'step' => 1,
+                'default' => 1,
+            ]
+        );
+
 		$this->end_controls_section(); ///
 
 
 		$this->start_controls_section(
-			'section_arrow_style',
+			'section_arrows_style',
 			[
-				'label' => esc_html__( 'Arrow style', 'sig-elementor-plus' ),
+				'label' => esc_html__( 'Arrows style', 'sig-elementor-plus' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'arrows' => 'yes',
@@ -317,9 +311,9 @@ class SIG_Slick extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
-            'arrow_color',
+            'arrows_color',
             [
-                'label' => esc_html__( 'Arrow color', 'sig-elementor-plus' ),
+                'label' => esc_html__( 'Arrows color', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .slick-prev:before, {{WRAPPER}} .slick-next:before' => 'color: {{VALUE}};',
@@ -328,9 +322,9 @@ class SIG_Slick extends \Elementor\Widget_Base {
         );
 
         $this->add_responsive_control(
-            'arrow_size',
+            'arrows_size',
             [
-                'label' => esc_html__( 'Arrow size', 'sig-elementor-plus' ),
+                'label' => esc_html__( 'Arrows size', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -352,9 +346,9 @@ class SIG_Slick extends \Elementor\Widget_Base {
         );
 
         $this->add_responsive_control(
-            'arrow_location',
+            'arrows_location',
             [
-                'label' => esc_html__( 'Arrow location', 'sig-elementor-plus' ),
+                'label' => esc_html__( 'Arrows location (%)', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -404,7 +398,7 @@ class SIG_Slick extends \Elementor\Widget_Base {
                 'range' => [
                     'px' => [
                         'min' => 5,
-                        'max' => 15,
+                        'max' => 20,
                         'step' => 1,
                     ],
                 ],
@@ -413,8 +407,8 @@ class SIG_Slick extends \Elementor\Widget_Base {
                     'size' => 6,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .slick-dots li' => 'margin: 0 calc( {{SIZE}}{{UNIT}} / 3 + 4px );',
-                    '{{WRAPPER}} .slick-dots li button:before' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .slick-dots li' => 'margin: 0 calc( {{SIZE}}px / 3 + 4px );',
+                    '{{WRAPPER}} .slick-dots li button:before' => 'font-size: {{SIZE}}px;',
                 ],
 
             ]
@@ -446,8 +440,21 @@ class SIG_Slick extends \Elementor\Widget_Base {
 
 	protected function render() {
 
+        // get devices breakpoints
+        $active_breakpoints = Elementor\Plugin::$instance->breakpoints->get_active_breakpoints();
+        $devices = [];
+        foreach($active_breakpoints as $name=>$info){
+            $devices[] = [
+                'name' => $name,
+                'label' => $info->get_label(),
+                'value' => $info->get_value()
+            ];
+        }
+
+        // get settings
     	$settings = $this->get_settings_for_display();
     	$id = 'slick_'.$this->get_id();
+
 
         $this->add_render_attribute('slick-wrapper',
             [
@@ -461,10 +468,25 @@ class SIG_Slick extends \Elementor\Widget_Base {
         jQuery(document).ready(function($) {
             $('#<?php echo $id;?>').slick({
                 slidesToShow: 1,
-                autoplay: <?php echo $settings['autoplay']; ?>,
+                autoplay: <?php echo ($settings['autoplay']==='yes') ? 'true':'false'; ?>,
                 autoplaySpeed: <?php echo (!empty($settings['autoplaySpeed'])) ? $settings['autoplaySpeed'].'000': 3000 ; ?>,
                 arrows: <?php echo ($settings['arrows']==='yes') ? 'true':'false'; ?>,
                 dots: <?php echo ($settings['dots']==='yes') ? 'true':'false'; ?>,
+                slidesToShow: <?php echo (!empty($settings['slidesToShow'])) ? $settings['slidesToShow']:1; ?>,
+                slidesToScroll: <?php echo (!empty($settings['slidesToScroll'])) ? $settings['slidesToScroll']: 1; ?>,
+                responsive: [
+                    <?php foreach( $devices as $d ): ?>
+                    {
+                        breakpoint: <?php echo $d['value']; ?>,
+                        settings: {
+                            arrows: <?php echo ($settings['arrows_'.$d['name']]==='yes') ? 'true':'false'; ?>,
+                            dots: <?php echo ($settings['dots_'.$d['name']]==='yes') ? 'true':'false'; ?>,
+                            slidesToShow: <?php echo (!empty($settings['slidesToShow_'.$d['name']])) ? $settings['slidesToShow_'.$d['name']]:1; ?>,
+                            slidesToScroll: <?php echo (!empty($settings['slidesToScroll_'.$d['name']])) ? $settings['slidesToScroll_'.$d['name']]: 1; ?>,
+                        }
+                    },
+                    <?php endforeach; ?>
+                ]
             })
         });
         </script>

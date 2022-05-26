@@ -39,30 +39,30 @@ if ( ! class_exists( 'SIG_Elementor_Plus' ) ) {
             }
 
             if ( is_plugin_active( 'elementor/elementor.php' )  ) {
-
-                // register widgets
+                add_action( 'elementor/elements/categories_registered', [ $this, 'register_my_category' ], 9 );
                 add_action( 'elementor/widgets/register', [ $this, 'register_my_widgets' ] );
-
-                // register controls
                 add_action( 'elementor/controls/register', [ $this, 'register_my_controls' ] );
-
-                /*
-                    對已存在的 widget 新增新的 control
-                    https://code.elementor.com/php-hooks/#elementorelementsection_namesection_idbefore_section_end
-                    https://github.com/elementor/elementor/issues/6499
-                */
-                add_action( 'elementor/element/icon-box/section_style_icon/before_section_end', array( $this, 'add_my_control' ) , 10, 2 );
-
             }
     	}
 
 
-    	public function register_my_widgets($widgets_manager){
+        public function register_my_category( $elements_manager ) {
 
-            require_once SIG_ELEMENTOR_PLUS_PATH.'inc/base.php';  //base
+        	$elements_manager->add_category(
+        		'sig-category',
+        		[
+        			'title' => __( 'SIG', 'sig-elementor-plus' ),
+        			'icon' => 'fa fa-plug',
+        		]
+        	);
+        }
 
-            // 從資料夾 widgets 找
+    	public function register_my_widgets($widgets_manager) {
+
+            require_once SIG_ELEMENTOR_PLUS_PATH . 'inc/base.php';  //base
+
         	$files = glob( SIG_ELEMENTOR_PLUS_PATH . 'widgets/*.php');
+
             foreach ($files as $file){
                 if(file_exists($file)){
                     require_once  $file;
@@ -74,53 +74,11 @@ if ( ! class_exists( 'SIG_Elementor_Plus' ) ) {
         public function register_my_controls( $controls_manager ) {
 
             /*
-            require_once( __DIR__ . '/controls/control-1.php' );
+            require_once( SIG_ELEMENTOR_PLUS_PATH . 'controls/*.php' );
             $controls_manager->register( new Control_1() );
             */
         }
 
-        public function add_my_control($element, $args)
-        {
-
-            $element->add_responsive_control(
-                'icon_box_margin',
-                [
-                    'label'      => __( 'Margin', 'elementor' ),
-                    'type'       => \Elementor\Controls_Manager::DIMENSIONS,
-                    'size_units' => [ 'px', 'em', '%' ],
-                    'selectors'  => [
-                        '{{WRAPPER}} .elementor-icon-box-icon' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    ],
-                    //'separator' => 'after',
-                ]
-            );
-
-
-        }
-
-        public function get_public_post_types( $args = [] ) {
-    		$post_type_args = [
-    			'show_in_nav_menus' => true, // Default is the value $public.
-    		];
-
-    		// Keep for backwards compatibility
-    		if ( ! empty( $args['post_type'] ) ) {
-    			$post_type_args['name'] = $args['post_type'];
-    			unset( $args['post_type'] );
-    		}
-
-    		$post_type_args = wp_parse_args( $post_type_args, $args );
-
-    		$_post_types = get_post_types( $post_type_args, 'objects' );
-
-    		$post_types = [];
-
-    		foreach ( $_post_types as $post_type => $object ) {
-    			$post_types[ $post_type ] = $object->label;
-    		}
-
-    		return $post_types;
-    	}
 
     	public function query_posts($settings=[]) {
 	        $query_args = [
@@ -140,18 +98,4 @@ if ( ! class_exists( 'SIG_Elementor_Plus' ) ) {
     new SIG_Elementor_Plus();
 }
 
-/**
- * add my category
- */
-function add_elementor_widget_categories( $elements_manager ) {
 
-	$elements_manager->add_category(
-		'sig-category',
-		[
-			'title' => __( 'SIG', 'sig-elementor-plus' ),
-			'icon' => 'fa fa-plug',
-		]
-	);
-
-}
-add_action( 'elementor/elements/categories_registered', 'add_elementor_widget_categories',9 );
