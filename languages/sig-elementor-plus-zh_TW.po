@@ -1,21 +1,21 @@
-# Copyright (C) 2021 github.com/mark2me
+# Copyright (C) 2022 github.com/mark2me
 # This file is distributed under the same license as the ElementorPlus plugin.
 msgid ""
 msgstr ""
 "Project-Id-Version: ElementorPlus 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/sig-elementor-"
 "plus\n"
-"POT-Creation-Date: 2021-10-06T15:21:43+08:00\n"
-"PO-Revision-Date: 2021-10-06 15:21+0800\n"
+"POT-Creation-Date: 2022-05-26T15:12:28+08:00\n"
+"PO-Revision-Date: 2022-05-26 15:24+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0\n"
-"X-Domain: sig-elementor-plus\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Domain: sig-elementor-plus\n"
 
 #. Plugin Name of the plugin
 msgid "ElementorPlus"
@@ -33,42 +33,150 @@ msgstr ""
 msgid "https://github.com/mark2me"
 msgstr ""
 
-#: elementor/portfolio.php:79
-msgid "Posts Number"
-msgstr "文章數量"
+#: sig-elementor-plus.php:54
+msgid "SIG"
+msgstr ""
 
-#: elementor/portfolio.php:145
-msgid "Order"
-msgstr "排序方向"
+#: widgets/slick.php:18
+msgid "Slick"
+msgstr ""
 
-#: elementor/portfolio.php:149
-msgid "Asc"
-msgstr "順向"
+#: widgets/slick.php:56
+msgid "Select images"
+msgstr "選擇圖片"
 
-#: elementor/portfolio.php:150
-msgid "Desc"
-msgstr "逆向"
+#: widgets/slick.php:66
+msgid "Image"
+msgstr "圖片"
 
-#: elementor/portfolio.php:189
-msgid "Image Zoom"
-msgstr "圖片放大"
+#: widgets/slick.php:74
+msgid "Content"
+msgstr "內容"
 
-#: elementor/portfolio.php:219
-msgid "Show Title"
-msgstr "顯示標題"
+#: widgets/slick.php:84
+msgid "Horizontal align"
+msgstr "水平對齊"
 
-#: elementor/portfolio.php:231
-msgid "Title Animation"
-msgstr "標題動畫"
+#: widgets/slick.php:88
+msgid "Left"
+msgstr "置左"
 
-#: elementor/portfolio.php:245
-msgid "Posts"
-msgstr "文章"
+#: widgets/slick.php:92 widgets/slick.php:117
+msgid "Center"
+msgstr "置中"
 
-#: elementor/portfolio.php:254
-msgid "Gutter"
-msgstr "間隔距離"
+#: widgets/slick.php:96
+msgid "Right"
+msgstr "置右"
 
-#: elementor/portfolio.php:364
-msgid "Title Margin"
-msgstr "標題邊界"
+#: widgets/slick.php:109
+msgid "Vertical align"
+msgstr "垂直對齊"
+
+#: widgets/slick.php:113
+msgid "Start"
+msgstr "置頂"
+
+#: widgets/slick.php:121
+msgid "End"
+msgstr "置底"
+
+#: widgets/slick.php:137
+msgid "Content width (%)"
+msgstr "內容寬度(%)"
+
+#: widgets/slick.php:161
+msgid "Slides"
+msgstr ""
+
+#: widgets/slick.php:177
+msgid "Setup"
+msgstr "設定"
+
+#: widgets/slick.php:185
+msgid "Auto play"
+msgstr "自動播放"
+
+#: widgets/slick.php:187
+msgid "On"
+msgstr "開"
+
+#: widgets/slick.php:188
+msgid "Off"
+msgstr "關"
+
+#: widgets/slick.php:197
+msgid "Auto play speed (s)"
+msgstr "自動播放速度(秒)"
+
+#: widgets/slick.php:214
+msgid "Image size"
+msgstr "圖片大小"
+
+#: widgets/slick.php:217
+msgid "Cover"
+msgstr ""
+
+#: widgets/slick.php:218
+msgid "Contain"
+msgstr ""
+
+#: widgets/slick.php:230
+msgid "Aspect ratio"
+msgstr "圖片寬長比例"
+
+#: widgets/slick.php:254
+msgid "Show arrows"
+msgstr "顯示方向鍵"
+
+#: widgets/slick.php:256 widgets/slick.php:268
+msgid "Show"
+msgstr ""
+
+#: widgets/slick.php:257 widgets/slick.php:269
+msgid "Hide"
+msgstr "隱藏"
+
+#: widgets/slick.php:266
+msgid "Show dots"
+msgstr "顯示導航點"
+
+#: widgets/slick.php:278
+msgid "# of slides to show"
+msgstr ""
+
+#: widgets/slick.php:290
+msgid "# of slides to scroll"
+msgstr ""
+
+#: widgets/slick.php:305
+msgid "Arrows style"
+msgstr "方向鍵樣式"
+
+#: widgets/slick.php:316
+msgid "Arrows color"
+msgstr "方向鍵顏色"
+
+#: widgets/slick.php:327
+msgid "Arrows size"
+msgstr "方向鍵大小"
+
+#: widgets/slick.php:351
+msgid "Arrows location (%)"
+msgstr "方向鍵位置(%)"
+
+#: widgets/slick.php:373
+msgid "Dots style"
+msgstr "導航點樣式"
+
+#: widgets/slick.php:384
+msgid "Dots color"
+msgstr "導航點顏色"
+
+#: widgets/slick.php:395
+msgid "Dots size"
+msgstr "導航點大小"
+
+#: widgets/slick.php:421
+msgid "Dots location"
+msgstr "導航點位置"

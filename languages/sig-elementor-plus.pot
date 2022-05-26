@@ -1,4 +1,4 @@
-# Copyright (C) 2021 github.com/mark2me
+# Copyright (C) 2022 github.com/mark2me
 # This file is distributed under the same license as the ElementorPlus plugin.
 msgid ""
 msgstr ""
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-10-06T15:21:43+08:00\n"
+"POT-Creation-Date: 2022-05-26T15:12:28+08:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: sig-elementor-plus\n"
@@ -30,42 +30,153 @@ msgstr ""
 msgid "https://github.com/mark2me"
 msgstr ""
 
-#: elementor/portfolio.php:79
-msgid "Posts Number"
+#: sig-elementor-plus.php:54
+msgid "SIG"
 msgstr ""
 
-#: elementor/portfolio.php:145
-msgid "Order"
+#: widgets/slick.php:18
+msgid "Slick"
 msgstr ""
 
-#: elementor/portfolio.php:149
-msgid "Asc"
+#: widgets/slick.php:56
+msgid "Select images"
 msgstr ""
 
-#: elementor/portfolio.php:150
-msgid "Desc"
+#: widgets/slick.php:66
+msgid "Image"
 msgstr ""
 
-#: elementor/portfolio.php:189
-msgid "Image Zoom"
+#: widgets/slick.php:74
+msgid "Content"
 msgstr ""
 
-#: elementor/portfolio.php:219
-msgid "Show Title"
+#: widgets/slick.php:84
+msgid "Horizontal align"
 msgstr ""
 
-#: elementor/portfolio.php:231
-msgid "Title Animation"
+#: widgets/slick.php:88
+msgid "Left"
 msgstr ""
 
-#: elementor/portfolio.php:245
-msgid "Posts"
+#: widgets/slick.php:92
+#: widgets/slick.php:117
+msgid "Center"
 msgstr ""
 
-#: elementor/portfolio.php:254
-msgid "Gutter"
+#: widgets/slick.php:96
+msgid "Right"
 msgstr ""
 
-#: elementor/portfolio.php:364
-msgid "Title Margin"
+#: widgets/slick.php:109
+msgid "Vertical align"
+msgstr ""
+
+#: widgets/slick.php:113
+msgid "Start"
+msgstr ""
+
+#: widgets/slick.php:121
+msgid "End"
+msgstr ""
+
+#: widgets/slick.php:137
+msgid "Content width (%)"
+msgstr ""
+
+#: widgets/slick.php:161
+msgid "Slides"
+msgstr ""
+
+#: widgets/slick.php:177
+msgid "Setup"
+msgstr ""
+
+#: widgets/slick.php:185
+msgid "Auto play"
+msgstr ""
+
+#: widgets/slick.php:187
+msgid "On"
+msgstr ""
+
+#: widgets/slick.php:188
+msgid "Off"
+msgstr ""
+
+#: widgets/slick.php:197
+msgid "Auto play speed (s)"
+msgstr ""
+
+#: widgets/slick.php:214
+msgid "Image size"
+msgstr ""
+
+#: widgets/slick.php:217
+msgid "Cover"
+msgstr ""
+
+#: widgets/slick.php:218
+msgid "Contain"
+msgstr ""
+
+#: widgets/slick.php:230
+msgid "Aspect ratio"
+msgstr ""
+
+#: widgets/slick.php:254
+msgid "Show arrows"
+msgstr ""
+
+#: widgets/slick.php:256
+#: widgets/slick.php:268
+msgid "Show"
+msgstr ""
+
+#: widgets/slick.php:257
+#: widgets/slick.php:269
+msgid "Hide"
+msgstr ""
+
+#: widgets/slick.php:266
+msgid "Show dots"
+msgstr ""
+
+#: widgets/slick.php:278
+msgid "# of slides to show"
+msgstr ""
+
+#: widgets/slick.php:290
+msgid "# of slides to scroll"
+msgstr ""
+
+#: widgets/slick.php:305
+msgid "Arrows style"
+msgstr ""
+
+#: widgets/slick.php:316
+msgid "Arrows color"
+msgstr ""
+
+#: widgets/slick.php:327
+msgid "Arrows size"
+msgstr ""
+
+#: widgets/slick.php:351
+msgid "Arrows location (%)"
+msgstr ""
+
+#: widgets/slick.php:373
+msgid "Dots style"
+msgstr ""
+
+#: widgets/slick.php:384
+msgid "Dots color"
+msgstr ""
+
+#: widgets/slick.php:395
+msgid "Dots size"
+msgstr ""
+
+#: widgets/slick.php:421
+msgid "Dots location"
 msgstr ""
