@@ -1,6 +1,6 @@
 <?php
 /*
-    Slick
+    use Slick
     http://kenwheeler.github.io/slick/
 */
 
@@ -15,7 +15,7 @@ class SIG_Slick extends \Elementor\Widget_Base {
 	}
 
 	public function get_title() {
-		return esc_html__( 'Slick', 'sig-elementor-plus' );
+		return esc_html__( 'SIG - Slick', 'sig-elementor-plus' );
 	}
 
 	public function get_icon() {

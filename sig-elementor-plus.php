@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: ElementorPlus
+Plugin Name: Elementor Plus
 Description: Elementor 功能補強工具包
 Author: github.com/mark2me
 Author URI: https://github.com/mark2me
@@ -51,7 +51,7 @@ if ( ! class_exists( 'SIG_Elementor_Plus' ) ) {
         	$elements_manager->add_category(
         		'sig-category',
         		[
-        			'title' => __( 'SIG', 'sig-elementor-plus' ),
+        			'title' => __( 'SIG Elementor Plus', 'sig-elementor-plus' ),
         			'icon' => 'fa fa-plug',
         		]
         	);
@@ -92,6 +92,63 @@ if ( ! class_exists( 'SIG_Elementor_Plus' ) ) {
 
             return new \WP_Query($query_args);
     	}
+
+
+    	//-------- common fn. ---------
+    	static function get_all_post_type_options($option=array()) {
+            $post_types = get_post_types(array('public' => true), 'objects');
+            $options = [];
+
+            foreach ($post_types as $post_type) {
+                $options[$post_type->name] = $post_type->label;
+            }
+
+            if( !empty($option) ) $options = array_merge($options,$option);
+
+            return $options;
+        }
+
+        //-------- common args --------
+        static function query_args($settings) {
+
+            $query_args = [
+                'ignore_sticky_posts' => 1,
+                'post_status' => 'publish',
+            ];
+
+            if (!empty($settings['orderby'])) $query_args['orderby'] = $settings['orderby'];
+            if (!empty($settings['order'])) $query_args['order'] = $settings['order'];
+
+            if (!empty($settings['post_in'])) {
+                $query_args['post_type'] = 'any';
+                $query_args['post__in'] = explode(',', $settings['post_in']);
+                $query_args['post__in'] = array_map('intval', $query_args['post__in']);
+            } else {
+                if (!empty($settings['post_type'])) {
+                    $query_args['post_type'] = $settings['post_type'];
+                }
+
+                if (!empty($settings['tax_query'])) {
+                    $tax_queries = $settings['tax_query'];
+                    $query_args['tax_query'] = array();
+                    $query_args['tax_query']['relation'] = 'OR';
+                    foreach ($tax_queries as $tq) {
+                        list($tax, $term) = explode(':', $tq);
+                        if (empty($tax) || empty($term)) continue;
+                        $query_args['tax_query'][] = array(
+                            'taxonomy' => $tax,
+                            'field' => 'slug',
+                            'terms' => $term
+                        );
+                    }
+                }
+            }
+
+            $query_args['posts_per_page'] = $settings['posts_per_page'];
+            $query_args['paged'] = max(1, get_query_var('paged'), get_query_var('page'));
+            return $query_args;
+        }
+        //
 
     }
 
