@@ -67,7 +67,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
         $this->add_control(
             'post_word_count',
             [
-                'label' => __('Max show numbers', 'sig-elementor-plus'),
+                'label' => __('Max show words', 'sig-elementor-plus'),
                 'type' => Controls_Manager::NUMBER,
                 'default' => 100,
             ]
@@ -126,7 +126,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
                         'icon' => 'fa fa-font',
                     ],
                 ],
-                'default' => 'font_icon',
+                'default' => 'fafont',
                 'toggle' => true,
             ]
         );
@@ -160,6 +160,15 @@ class SIG_Timeline extends \Elementor\Widget_Base {
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'icon_border',
+                'label' => __( 'Icon border', 'sig-elementor-plus' ),
+                'selector' => '{{WRAPPER}} .sig-timeline-icon',
+            ]
+        );
+
         $this->add_control(
             'icon_border_radius',
             [
@@ -183,7 +192,8 @@ class SIG_Timeline extends \Elementor\Widget_Base {
                     'size' => 50,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .sig-timeline-icon' => 'border-radius:{{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .sig-timeline-icon' => 'left: 50%; right: auto; transform: translateX(-50%);border-radius:{{SIZE}}{{UNIT}};',
+                    '(mobile) {{WRAPPER}} .sig-timeline-icon' => 'left: 0;transform: initial;'
                 ],
             ]
         );
@@ -218,7 +228,10 @@ class SIG_Timeline extends \Elementor\Widget_Base {
                     'size' => 4,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .sig-timeline-box::before' => 'width:{{SIZE}}{{UNIT}};margin-left: calc( {{SIZE}}{{UNIT}} / 2 * (-1) );',
+                    '{{WRAPPER}} .sig-timeline-box:before' => 'width:{{SIZE}}{{UNIT}};',
+                    '(desktop) {{WRAPPER}} .sig-timeline-box:before' => 'left: 50%; right: auto; transform: translateX(-50%);',
+                    '(tablet) {{WRAPPER}} .sig-timeline-box:before' => 'left: 50%; right: auto; transform: translateX(-50%);',
+                    '(mobile) {{WRAPPER}} .sig-timeline-box:before' => 'left:calc( {{icon_width_mobile.SIZE}}{{icon_width_mobile.UNIT}} / 2 );transform: initial;',
                 ],
             ]
         );
@@ -268,7 +281,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
                     'size' => 60,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .sig-timeline-icon' => 'width:{{SIZE}}{{UNIT}}; height:{{SIZE}}{{UNIT}}; margin-left: calc( {{SIZE}}{{UNIT}} / 2 * (-1) );',
+                    '{{WRAPPER}} .sig-timeline-icon' => 'width:{{SIZE}}{{UNIT}}; height:{{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -322,36 +335,29 @@ class SIG_Timeline extends \Elementor\Widget_Base {
         //////
 
 
-        // ----- post style ----- //
+        // ----- Card style ----- //
         $this->start_controls_section(
-            'section_post_style',
+            'section_card_style',
             [
-                'label' => __( 'Post style', 'sig-elementor-plus' ),
+                'label' => __( 'Card style', 'sig-elementor-plus' ),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
 
-        $this->add_control(
-            'post_title_color',
-            [
-                'label' => esc_html__( 'Title color', 'sig-elementor-plus' ),
-                'type' => Controls_Manager::COLOR,
-                'default' => '#eeeeee',
-                'selectors' => [
-                    '{{WRAPPER}} .sig-timeline-content .title' => 'color:{{VALUE}}',
-                ],
-            ]
-        );
-
         $this->add_responsive_control(
-            'post_arrow_size',
+            'arrow_size',
             [
-                'label' => __( 'Post arrow size', 'sig-elementor-plus' ),
+                'label' => __( 'Arrow size', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px' ],
+                'size_units' => [ 'px','em' ],
                 'range' => [
                     'px' => [
                         'min' => 5,
+                        'max' => 30,
+                        'step' => 1,
+                    ],
+                    'em' => [
+                        'min' => 1,
                         'max' => 30,
                         'step' => 1,
                     ],
@@ -361,19 +367,24 @@ class SIG_Timeline extends \Elementor\Widget_Base {
                     'size' => 5,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .sig-timeline-content:before' => 'border: {{SIZE}}{{UNIT}} solid transparent;',
+                    '{{WRAPPER}} .sig-timeline-body:before' => 'border-width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_responsive_control(
-            'post_arrow_top',
+            'arrow_top',
             [
-                'label' => __( 'Post arrow top space', 'sig-elementor-plus' ),
+                'label' => __( 'Arrow top margin', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px' ],
+                'size_units' => [ 'px','em' ],
                 'range' => [
                     'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                    'em' => [
                         'min' => 0,
                         'max' => 100,
                         'step' => 1,
@@ -384,52 +395,32 @@ class SIG_Timeline extends \Elementor\Widget_Base {
                     'size' => 10,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .sig-timeline-content:before' => 'top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .sig-timeline-body:before' => 'top: {{SIZE}}{{UNIT}}; right: calc( 100% - {{arrow_size.SIZE}}{{arrow_size.UNIT}} );',
+                    '(desktop) {{WRAPPER}} .sig-timeline-item:nth-child(odd) .sig-timeline-body:before' => 'left: calc( 100% - {{arrow_size.SIZE}}{{arrow_size.UNIT}});',
+                    '(mobile) {{WRAPPER}} .sig-timeline-item:nth-child(odd) .sig-timeline-body:before' => 'left: auto;',
                 ],
             ]
         );
 
-        $this->add_control(
-            'post_title_size',
-            [
-                'label' => esc_html__( 'Title size', 'sig-elementor-plus' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px' ],
-                'range' => [
-                    'px' => [
-                        'min' => 12,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 20,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .sig-timeline-content .title' => 'font-size:{{VALUE}}px',
-                ],
-            ]
-        );
 
         $this->add_control(
-            'post_bgcolor',
+            'card_bgcolor',
             [
-                'label' => esc_html__( 'Content Background color', 'sig-elementor-plus' ),
+                'label' => esc_html__( 'Card background color', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#eeeeee',
                 'selectors' => [
-                    '{{WRAPPER}} .sig-timeline-content' => 'background-color:{{VALUE}}',
-                    '{{WRAPPER}} .sig-timeline-item:nth-child(odd) .sig-timeline-content:before' => 'border-left-color:{{VALUE}}',
-                    '{{WRAPPER}} .sig-timeline-item:nth-child(even) .sig-timeline-content:before' => 'border-right-color:{{VALUE}}',
+                    '{{WRAPPER}} .sig-timeline-body' => 'background-color:{{VALUE}}',
+                    //'{{WRAPPER}} .sig-timeline-item:nth-child(odd) .sig-timeline-body:before' => 'border-left-color:{{VALUE}}',
+                    '{{WRAPPER}} .sig-timeline-item .sig-timeline-body:before' => 'border-color:{{VALUE}}',
                 ],
             ]
         );
 
         $this->add_responsive_control(
-            'post_padding',
+            'card_padding',
             [
-                'label' => __( 'Content padding', 'sig-elementor-plus' ),
+                'label' => __( 'Card padding', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px' ],
                 'range' => [
@@ -444,17 +435,209 @@ class SIG_Timeline extends \Elementor\Widget_Base {
                     'size' => 0,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .sig-timeline-content' => 'padding: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .sig-timeline-body' => 'padding: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_responsive_control(
-            'post_space',
+            'card_margin',
             [
-                'label' => __( 'Content space', 'sig-elementor-plus' ),
+                'label' => __( 'Card margin', 'sig-elementor-plus' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%', 'em' ],
+                'default' => [
+                    'top' => 0,
+                    'right' => 50,
+                    'bottom' => 0,
+                    'left' => 0,
+                    'unit' => '%',
+                    'isLinked' => false
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .sig-timeline-item:nth-child(odd) .sig-timeline-body' => 'width: calc( 100% - {{RIGHT}}{{UNIT}} - {{LEFT}}{{UNIT}} );margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '(desktop) {{WRAPPER}} .sig-timeline-item:nth-child(even) .sig-timeline-body' => 'width: calc( 100% - {{RIGHT}}{{UNIT}} - {{LEFT}}{{UNIT}} );margin: {{TOP}}{{UNIT}} {{LEFT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{RIGHT}}{{UNIT}};',
+                    '(mobile) {{WRAPPER}} .sig-timeline-item:nth-child(even) .sig-timeline-body' => 'width: calc( 100% - {{RIGHT}}{{UNIT}} - {{LEFT}}{{UNIT}} );margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'card_radius',
+            [
+                'label' => __('Card border radius', 'sig-elementor-plus'),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px' ],
+                'size_units' => [ 'px','em' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 50,
+                        'step' => 1,
+                    ],
+                    'em' => [
+                        'min' => 0,
+                        'max' => 50,
+                        'step' => 1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 0,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .sig-timeline-body' => 'border-radius:{{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+        //////
+
+
+        // ----- post style ----- //
+        $this->start_controls_section(
+            'section_post_style',
+            [
+                'label' => __( 'Post style', 'sig-elementor-plus' ),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'show_title',
+            [
+                'label' => __( 'Show Title', 'elementor' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'sig-elementor-plus' ),
+                'label_off' => __( 'No', 'sig-elementor-plus' ),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+                'label' => __( 'Title style', 'sig-elementor-plus' ),
+				'name' => 'post_title',
+				'selector' => '{{WRAPPER}} .sig-timeline-title',
+                'condition' => [
+                    'show_title' => 'yes',
+                ],
+			]
+		);
+
+        $this->add_control(
+            'post_title_color',
+            [
+                'label' => __( 'Title color', 'sig-elementor-plus' ),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#eeeeee',
+                'condition' => [
+                    'show_title' => 'yes',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .sig-timeline-title' => 'color:{{VALUE}}',
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'show_content',
+            [
+                'label' => __( 'Show content', 'elementor' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'sig-elementor-plus' ),
+                'label_off' => __( 'No', 'sig-elementor-plus' ),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+                'label' => __( 'Content style', 'sig-elementor-plus' ),
+				'name' => 'post_content',
+				'selector' => '{{WRAPPER}} .sig-timeline-content',
+                'condition' => [
+                    'show_content' => 'yes',
+                ],
+			]
+		);
+
+        $this->add_control(
+            'post_content_color',
+            [
+                'label' => __( 'Content color', 'sig-elementor-plus' ),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#eeeeee',
+                'condition' => [
+                    'show_content' => 'yes',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .sig-timeline-content' => 'color:{{VALUE}}',
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'show_read_more',
+            [
+                'label' => __( 'Show read more', 'elementor' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'sig-elementor-plus' ),
+                'label_off' => __( 'No', 'sig-elementor-plus' ),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+                'label' => __( 'Read more style', 'sig-elementor-plus' ),
+				'name' => 'post_more',
+				'selector' => '{{WRAPPER}} .sig-timeline-more',
+                'condition' => [
+                    'show_read_more' => 'yes',
+                ],
+			]
+		);
+
+        $this->add_control(
+            'post_more_color',
+            [
+                'label' => __( 'Read more color', 'sig-elementor-plus' ),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#eeeeee',
+                'condition' => [
+                    'show_read_more' => 'yes',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .sig-timeline-more' => 'color:{{VALUE}}',
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'show_date',
+            [
+                'label' => __( 'Show day', 'elementor' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'sig-elementor-plus' ),
+                'label_off' => __( 'No', 'sig-elementor-plus' ),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'post_date_margin',
+            [
+                'label' => __( 'Day margin', 'elementor' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ '%' ],
                 'range' => [
                     'px' => [
                         'min' => 0,
@@ -463,40 +646,44 @@ class SIG_Timeline extends \Elementor\Widget_Base {
                     ],
                 ],
                 'default' => [
-                    'unit' => 'px',
-                    'size' => 20,
+                    'unit' => '%',
+                    'size' => 0,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .sig-timeline-item' => 'margin: {{SIZE}}{{UNIT}} 0;',
+                    '(desktop) {{WRAPPER}} .sig-timeline-date' => 'position: absolute; width: 100%;top: 18px;',
+                    '(mobile) {{WRAPPER}} .sig-timeline-date' => 'position: initial; width: auto;float: right;',
+                    '{{WRAPPER}} .sig-timeline-item:nth-child(odd) .sig-timeline-date' => 'left: calc( 100% + {{SIZE}}{{UNIT}} );',
+                    '{{WRAPPER}} .sig-timeline-item:nth-child(even) .sig-timeline-date' => 'right: calc( 100% + {{SIZE}}{{UNIT}} ); text-align:right;'
                 ],
             ]
         );
 
-        $this->add_responsive_control(
-            'post_margin',
+        $this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+                'label' => __( 'Date style', 'sig-elementor-plus' ),
+				'name' => 'post_date',
+				'selector' => '{{WRAPPER}} .sig-timeline-date',
+                'condition' => [
+                    'show_date' => 'yes',
+                ],
+			]
+		);
+
+        $this->add_control(
+            'post_date_color',
             [
-                'label' => __( 'Content margin', 'sig-elementor-plus' ),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px' ],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 20,
+                'label' => __( 'Date color', 'sig-elementor-plus' ),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#999999',
+                'condition' => [
+                    'show_date' => 'yes',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .sig-timeline-content' => 'width: calc( 50% - {{SIZE}}{{UNIT}} );',
-                    '{{WRAPPER}} .sig-timeline-date' => 'left: calc( 100% + {{SIZE}}{{UNIT}} * 2 );'
-                ],
+                    '{{WRAPPER}} .sig-timeline-date' => 'color:{{VALUE}}',
+                ]
             ]
         );
-
-
 
         $this->end_controls_section();
         //////
@@ -504,6 +691,8 @@ class SIG_Timeline extends \Elementor\Widget_Base {
     }
 
     protected function render() {
+        //
+        $settings = $this->get_settings_for_display();
 
         // get devices breakpoints
         $active_breakpoints = Elementor\Plugin::$instance->breakpoints->get_active_breakpoints();
@@ -516,6 +705,31 @@ class SIG_Timeline extends \Elementor\Widget_Base {
             ];
         }
 
+        $min = false;
+        foreach($devices as $index=>$d){
+            if( $min === false ){
+                $min = $d;
+            }else if( isset($min['value']) && $min['value'] > $d['value'] ){
+                $min = $d;
+            }
+        }
+
+        $line_width = $settings['line_width']['size'];
+        if( !empty($settings['line_width_'.$min['name']]) ){
+            $line_width_s = $settings['line_width_'.$min['name']]['size'];
+        }else{
+            $line_width_s = $line_width;
+        }
+
+        $icon_width = $settings['icon_width']['size'];
+        if( !empty($settings['icon_width_'.$min['name']]) ){
+            $icon_width_s = $settings['icon_width_'.$min['name']]['size'];
+        }else{
+            $icon_width_s = $icon_width;
+        }
+
+//print_r( $settings );
+
         // get settings
         $el_id = 'sig_timeline_'.$this->get_id();
         $this->add_render_attribute('timeline-wrapper',
@@ -525,7 +739,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
             ]
         );
 
-        $settings = $this->get_settings_for_display();
+
         $query_args = SIG_Elementor_Plus::query_args($settings);
         $loop = new \WP_Query($query_args);
 
@@ -537,49 +751,35 @@ class SIG_Timeline extends \Elementor\Widget_Base {
         .sig-timeline-box:before{
             content: "";
             position: absolute;
-            top: 0;
-            left: 50%;
             height: 100%;
+            top: 0;
+            bottom: 0;
         }
 
         .sig-timeline-icon{
             position: absolute;
-            left: 50%;
-            box-shadow: 0 0 0 4px #ffffff, inset 0 2px 0 rgb(0 0 0 / 8%), 0 3px 0 4px rgb(0 0 0 / 5%);
+            /*box-shadow: 0 0 0 4px #ffffff, inset 0 2px 0 rgb(0 0 0 / 8%), 0 3px 0 4px rgb(0 0 0 / 5%);*/
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        .sig-timeline-content{
+        .sig-timeline-body{
             position: relative;
-            width: 40%;
+            width: 100%;
         }
 
-        .sig-timeline-content:before{
+        .sig-timeline-body:before{
             content: "";
             position: absolute;
             top: 24px;
-            left: 100%;
             height: 0;
             width: 0;
+            border-style: solid;
+            transform: rotate(-45deg);
         }
 
-        .sig-timeline-item:nth-child(even) .sig-timeline-content{
-            float: right;
-        }
-
-        .sig-timeline-item:nth-child(even) .sig-timeline-content:before{
-            left: auto;
-            right: 100%;
-        }
-
-        .sig-timeline-item:after, .sig-timeline-content:after{
+        .sig-timeline-item:after, .sig-timeline-body:after{
             content: ""; clear: both; display: table;
-        }
-        .sig-timeline-date{
-            position: absolute;
-            width: 100%;
-            top: 18px;
         }
 
         </style>
@@ -602,11 +802,19 @@ class SIG_Timeline extends \Elementor\Widget_Base {
             ?>
             <div class="sig-timeline-item post-<?php echo get_the_ID();?>">
                 <div class="sig-timeline-icon <?php echo $icon_type;?>"><?php echo $icon;?></div>
-                <div class="sig-timeline-content">
-                    <div class="title"><?php the_title(); ?></div>
-                    <div><?php echo wp_trim_words( get_the_content(), $settings['post_word_count'], ' ...' ); ?></div>
-                    <a href="<?php the_permalink(); ?>" class="sig-timeline-more">Read more</a>
+                <div class="sig-timeline-body">
+                    <?php if ( 'yes' === $settings['show_title'] ): ?>
+                    <div class="sig-timeline-title"><?php the_title(); ?></div>
+                    <?php endif; ?>
+                    <?php if ( 'yes' === $settings['show_content'] ): ?>
+                    <div class="sig-timeline-content"><?php echo wp_trim_words( get_the_content(), $settings['post_word_count'], ' ...' ); ?></div>
+                    <?php endif; ?>
+                    <?php if ( 'yes' === $settings['show_read_more'] ): ?>
+                    <a class="sig-timeline-more" href="<?php the_permalink(); ?>">Read more</a>
+                    <?php endif; ?>
+                    <?php if ( 'yes' === $settings['show_date'] ): ?>
                     <span class="sig-timeline-date"><?php echo get_the_date();?></span>
+                    <?php endif; ?>
                 </div>
             </div>
             <?php
