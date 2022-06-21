@@ -69,12 +69,42 @@ class SIG_Slick extends \Elementor\Widget_Base {
 			]
 		);
 
+        $repeater->add_control(
+            'slide_link',
+            [
+                'label' => __( 'Image link', 'sig-elementor-plus' ),
+                'type' => Controls_Manager::URL,
+                'placeholder' => __( 'https://your-link.com', 'elementor' ),
+                'show_external' => true,
+                'default' => [
+                    'url' => '',
+                    'is_external' => true,
+                    'nofollow' => true,
+                ],
+            ]
+        );
+
 		$repeater->add_control(
+            'show_content',
+            [
+                'label' => esc_html__( 'Add cintent', 'sig-elementor-plus' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'sig-elementor-plus' ),
+                'label_off' => __( 'No', 'sig-elementor-plus' ),
+                'return_value' => 'yes',
+                'default' => '',
+            ]
+        );
+
+        $repeater->add_control(
 			'slide_content', [
 				'label' => esc_html__( 'Content', 'sig-elementor-plus' ),
 				'type' => Controls_Manager::WYSIWYG,
 				'default' => '',
 				'show_label' => false,
+                'condition' => [
+                    'show_content' => 'yes',
+                ],
 			]
 		);
 
@@ -97,6 +127,9 @@ class SIG_Slick extends \Elementor\Widget_Base {
 						'icon' => 'eicon-text-align-right',
 					],
 				],
+                'condition' => [
+                    'show_content' => 'yes',
+                ],
 				'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}}' => 'display:flex; justify-content: {{VALUE}};',
 				],
@@ -123,7 +156,9 @@ class SIG_Slick extends \Elementor\Widget_Base {
 					],
 
 				],
-				//'prefix_class' => 'elementor-tabs-alignment-',
+				'condition' => [
+                    'show_content' => 'yes',
+                ],
 				'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}}' => 'display:flex; align-items: {{VALUE}};',
 				],
@@ -147,6 +182,9 @@ class SIG_Slick extends \Elementor\Widget_Base {
                 'default' => [
                     'unit' => '%',
                     'size' => 35,
+                ],
+                'condition' => [
+                    'show_content' => 'yes',
                 ],
                 'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}} .slide_content' => 'width: {{SIZE}}{{UNIT}};',
@@ -496,9 +534,16 @@ class SIG_Slick extends \Elementor\Widget_Base {
 		foreach( $settings['slides'] as $slide ){
     		$img_url = $slide['slide_image']['url'];
     		$content =  $slide['slide_content'];
+
+            if( !empty($slide['slide_link']['url']) ){
+                echo '<a href="'.$slide['slide_link']['url'].'" '.( !empty($slide['slide_link']['is_external']) ? 'target="_blank"':'' ).'>';
+            }
     		echo '<div class="item elementor-repeater-item-'.$slide['_id'].'" style="background-image:url('.$img_url.');background-repeat: no-repeat;background-position: center;">';
-    		if( !empty($content) ) echo '<div class="slide_content">'.$content.'</div>';
+    		if ( 'yes' === $settings['show_content'] )  echo '<div class="slide_content">'.$content.'</div>';
     		echo '</div>';
+            if( !empty($slide['slide_link']['url']) ){
+                echo '</a>';
+            }
 		}
 		?>
         </div>
