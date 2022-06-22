@@ -87,7 +87,7 @@ class SIG_Slick extends \Elementor\Widget_Base {
 		$repeater->add_control(
             'show_content',
             [
-                'label' => esc_html__( 'Add cintent', 'sig-elementor-plus' ),
+                'label' => esc_html__( 'Add content', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'sig-elementor-plus' ),
                 'label_off' => __( 'No', 'sig-elementor-plus' ),
@@ -215,6 +215,20 @@ class SIG_Slick extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'Setup', 'sig-elementor-plus' ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
+        );
+
+        $this->add_control(
+            'isFade',
+            [
+                'label' => __( 'Change mode', 'sig-elementor-plus' ),
+                'type' => Controls_Manager::SELECT,
+                'options' => [
+                    'no' => __( 'slide mode', 'sig-elementor-plus' ),
+                    'yes' => __('fade mode', 'sig-elementor-plus' )
+                ] ,
+                'default' => 'no',
+
+            ]
         );
 
         $this->add_control(
@@ -349,6 +363,40 @@ class SIG_Slick extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
+            'arrows_type',
+            [
+                'label' => esc_html__( 'Custom arrows icon', 'sig-elementor-plus' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'On', 'sig-elementor-plus' ),
+                'label_off' => __( 'Off', 'sig-elementor-plus' ),
+                'return_value' => 'yes',
+                'default' => '',
+            ]
+        );
+
+        $this->add_control(
+            'arrows_prev_icon',
+            [
+                'label' => __( 'Select icon for previous arrow', 'sig-elementor-plus' ),
+                'type' => Controls_Manager::ICONS,
+                'condition' => [
+                    'arrows_type' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'arrows_next_icon',
+            [
+                'label' => __( 'Select icon for next arrow', 'sig-elementor-plus' ),
+                'type' => Controls_Manager::ICONS,
+                'condition' => [
+                    'arrows_type' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
             'arrows_color',
             [
                 'label' => esc_html__( 'Arrows color', 'sig-elementor-plus' ),
@@ -356,6 +404,7 @@ class SIG_Slick extends \Elementor\Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .slick-prev:before, {{WRAPPER}} .slick-next:before' => 'color: {{VALUE}};',
                 ],
+                'default' => '#999999'
             ]
         );
 
@@ -424,6 +473,35 @@ class SIG_Slick extends \Elementor\Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .slick-dots li button:before' => 'color: {{VALUE}};',
                 ],
+                'default' => '#eeeeee'
+            ]
+        );
+
+        $this->add_control(
+            'dots_color_opacity',
+            [
+                'label' => esc_html__( 'Dots opacity', 'sig-elementor-plus' ),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 0.3,
+                'max' => 1,
+                'step' => 0.05,
+                'default' => 1,
+                'selectors' => [
+                    '{{WRAPPER}} .slick-dots li button:before' => 'opacity: {{VALUE}};',
+                    '{{WRAPPER}} .slick-dots li.slick-active button:before' => 'opacity: 1;',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'dots_color_active',
+            [
+                'label' => esc_html__( 'Dots active color', 'sig-elementor-plus' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .slick-dots li.slick-active button:before' => 'color: {{VALUE}};',
+                ],
+                'default' => '#999999'
             ]
         );
 
@@ -432,11 +510,16 @@ class SIG_Slick extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__( 'Dots size', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px' ],
+                'size_units' => [ 'px','em' ],
                 'range' => [
                     'px' => [
-                        'min' => 5,
-                        'max' => 20,
+                        'min' => 12,
+                        'max' => 30,
+                        'step' => 1,
+                    ],
+                    'em' => [
+                        'min' => 1,
+                        'max' => 10,
                         'step' => 1,
                     ],
                 ],
@@ -445,8 +528,8 @@ class SIG_Slick extends \Elementor\Widget_Base {
                     'size' => 6,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .slick-dots li' => 'margin: 0 calc( {{SIZE}}px / 3 + 4px );',
-                    '{{WRAPPER}} .slick-dots li button:before' => 'font-size: {{SIZE}}px;',
+                    '{{WRAPPER}} .slick-dots li button:before' => 'width: {{SIZE}}{{UNIT}};height: {{SIZE}}{{UNIT}};font-size: {{SIZE}}{{UNIT}};line-height: {{SIZE}}{{UNIT}}',
+                    '{{WRAPPER}} .slick-dots li button' => 'width: {{SIZE}}{{UNIT}};height: {{SIZE}}{{UNIT}};',
                 ],
 
             ]
@@ -458,15 +541,40 @@ class SIG_Slick extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__( 'Dots location', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px','%' ],
                 'range' => [
                     'px' => [
-                        'min' => -35,
-                        'max' => 35,
+                        'min' => -50,
+                        'max' => 50,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
                         'step' => 1,
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .slick-dots' => 'bottom: {{SIZE}}px;',
+                    '{{WRAPPER}} .nav-slick-dots' => 'bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'dots_margin',
+            [
+                'label' => esc_html__( 'Dots margin', 'sig-elementor-plus' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 50,
+                        'step' => 1,
+                    ]
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .slick-dots li' => 'margin: 0 {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -493,30 +601,43 @@ class SIG_Slick extends \Elementor\Widget_Base {
     	$settings = $this->get_settings_for_display();
     	$id = 'slick_'.$this->get_id();
 
-
         $this->add_render_attribute('slick-wrapper',
             [
                 'id' => $id,
-                //'class' => [ 'custom-widget-wrapper-class', settings['custom_class'] ],
             ]
         );
+
+        $arrows_prev_icon = (!empty($settings['arrows_prev_icon']['value'])) ? '<i class="slick-prev '.$settings['arrows_prev_icon']['value'].'" aria-label="Previous"></i>':'';
+        $arrows_next_icon = (!empty($settings['arrows_next_icon']['value'])) ? '<i class="slick-next '.$settings['arrows_next_icon']['value'].'" aria-label="Next">Next</i>':'';
+
 
         ?>
         <script>
         jQuery(document).ready(function($) {
-            $('#<?php echo $id;?>').slick({
+            $('#<?php echo $id;?> .slick_items').slick({
                 slidesToShow: 1,
+                fade: <?php echo ($settings['isFade']==='yes') ? 'true':'false'; ?>,
                 autoplay: <?php echo ($settings['autoplay']==='yes') ? 'true':'false'; ?>,
                 autoplaySpeed: <?php echo (!empty($settings['autoplaySpeed'])) ? $settings['autoplaySpeed'].'000': 3000 ; ?>,
                 arrows: <?php echo ($settings['arrows']==='yes') ? 'true':'false'; ?>,
                 dots: <?php echo ($settings['dots']==='yes') ? 'true':'false'; ?>,
+                appendDots: $('#<?php echo $id;?> .nav-slick-dots'),
                 slidesToShow: <?php echo (!empty($settings['slidesToShow'])) ? $settings['slidesToShow']:1; ?>,
                 slidesToScroll: <?php echo (!empty($settings['slidesToScroll'])) ? $settings['slidesToScroll']: 1; ?>,
+                <?php
+                    if ( !empty($arrows_prev_icon) ) {
+                        echo "prevArrow:'{$arrows_prev_icon}',";
+                    }
+                    if ( !empty($arrows_next_icon) ) {
+                        echo "nextArrow:'{$arrows_next_icon}',";
+                    }
+                ?>
                 responsive: [
                     <?php foreach( $devices as $d ): ?>
                     {
                         breakpoint: <?php echo $d['value']; ?>,
                         settings: {
+                            fade: <?php echo ($settings['isFade_'.$d['name']]==='yes') ? 'true':'false'; ?>,
                             arrows: <?php echo ($settings['arrows_'.$d['name']]==='yes') ? 'true':'false'; ?>,
                             dots: <?php echo ($settings['dots_'.$d['name']]==='yes') ? 'true':'false'; ?>,
                             slidesToShow: <?php echo (!empty($settings['slidesToShow_'.$d['name']])) ? $settings['slidesToShow_'.$d['name']]:1; ?>,
@@ -528,24 +649,34 @@ class SIG_Slick extends \Elementor\Widget_Base {
             })
         });
         </script>
+        <div>
         <div <?php echo $this->get_render_attribute_string('slick-wrapper'); ?>>
+            <div class="slick_items">
         <?php
 
 		foreach( $settings['slides'] as $slide ){
     		$img_url = $slide['slide_image']['url'];
     		$content =  $slide['slide_content'];
 
+    		echo '<div class="item elementor-repeater-item-'.$slide['_id'].'" style="background-image:url('.$img_url.');background-repeat: no-repeat;background-position: center;">';
             if( !empty($slide['slide_link']['url']) ){
                 echo '<a href="'.$slide['slide_link']['url'].'" '.( !empty($slide['slide_link']['is_external']) ? 'target="_blank"':'' ).'>';
             }
-    		echo '<div class="item elementor-repeater-item-'.$slide['_id'].'" style="background-image:url('.$img_url.');background-repeat: no-repeat;background-position: center;">';
-    		if ( 'yes' === $settings['show_content'] )  echo '<div class="slide_content">'.$content.'</div>';
-    		echo '</div>';
+            print_r($settings['arrows_prev']);
+            if ( 'yes' === $settings['show_content'] ) {
+                echo '<div class="slide_content">'.$content.'</div>';
+            }else{
+                echo '&nbsp;';
+            }
+
             if( !empty($slide['slide_link']['url']) ){
                 echo '</a>';
             }
+    		echo '</div>';
 		}
 		?>
+            </div>
+            <div class="nav-slick-dots"></div>
         </div>
         <?php
 

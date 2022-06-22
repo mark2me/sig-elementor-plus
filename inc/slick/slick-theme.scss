@@ -91,7 +91,6 @@ $slick-opacity-not-active: 0.25 !default;
         opacity: $slick-opacity-not-active;
     }
     &:before {
-        font-family: $slick-font-family;
         font-size: 20px;
         line-height: 1;
         color: $slick-arrow-color;
@@ -101,7 +100,13 @@ $slick-opacity-not-active: 0.25 !default;
     }
 }
 
-.slick-prev {
+button.slick-prev, button.slick-next{
+    &:before {
+        font-family: $slick-font-family;
+    }
+}
+
+button.slick-prev {
     left: -25px;
     [dir="rtl"] & {
         left: auto;
@@ -115,7 +120,7 @@ $slick-opacity-not-active: 0.25 !default;
     }
 }
 
-.slick-next {
+button.slick-next {
     right: -25px;
     [dir="rtl"] & {
         left: -25px;
@@ -135,20 +140,23 @@ $slick-opacity-not-active: 0.25 !default;
     /* margin-bottom: 30px; */
 }
 
-.slick-dots {
+.nav-slick-dots{
     position: absolute;
-    bottom: -25px;
+    width: 100%;
+}
+.slick-dots {
     list-style: none;
     display: block;
     text-align: center;
     padding: 0;
     margin: 0;
-    width: 100%;
+    line-height: 1;
     li {
         position: relative;
         display: inline-block;
-        height: 20px;
+        /*height: 20px;
         width: 20px;
+        */
         margin: 0 5px;
         padding: 0;
         cursor: pointer;
@@ -156,8 +164,6 @@ $slick-opacity-not-active: 0.25 !default;
             border: 0;
             background: transparent;
             display: block;
-            height: 20px;
-            width: 20px;
             outline: none;
             line-height: 0px;
             font-size: 0px;
@@ -171,25 +177,17 @@ $slick-opacity-not-active: 0.25 !default;
                 }
             }
             &:before {
-                position: absolute;
-                top: 0;
-                left: 0;
                 content: $slick-dot-character;
-                width: 20px;
-                height: 20px;
                 font-family: $slick-font-family;
                 font-size: $slick-dot-size;
-                line-height: 20px;
                 text-align: center;
                 color: $slick-dot-color;
-                opacity: $slick-opacity-not-active;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
             }
         }
         &.slick-active button:before {
             color: $slick-dot-color-active;
-            opacity: $slick-opacity-default;
         }
     }
 }

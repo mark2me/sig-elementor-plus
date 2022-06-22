@@ -114,7 +114,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
         $this->add_control(
             'icon_type',
             [
-                'label' => __( 'Icon type', 'elementor' ),
+                'label' => __( 'Icon type', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'fafont' => [
@@ -126,7 +126,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
                         'icon' => 'fa fa-font',
                     ],
                 ],
-                'default' => 'fafont',
+                'default' => 'font',
                 'toggle' => true,
             ]
         );
@@ -153,7 +153,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
                 'type' => Controls_Manager::TEXT,
                 'label_block' => true,
                 'placeholder' => __( 'Your Text', 'sig-elementor-plus' ),
-                'default' => '',
+                'default' => 'A',
                 'condition' => [
                     'icon_type' => 'font',
                 ],
@@ -291,7 +291,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__( 'Color', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::COLOR,
-                'default' => '#999999',
+                'default' => '#ffffff',
                 'selectors' => [
                     '{{WRAPPER}} .sig-timeline-icon i, {{WRAPPER}} .sig-timeline-icon span' => 'color:{{VALUE}}',
                 ],
@@ -392,7 +392,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
                 ],
                 'default' => [
                     'unit' => 'px',
-                    'size' => 10,
+                    'size' => 25,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .sig-timeline-body:before' => 'top: {{SIZE}}{{UNIT}}; right: calc( 100% - {{arrow_size.SIZE}}{{arrow_size.UNIT}} );',
@@ -432,7 +432,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
                 ],
                 'default' => [
                     'unit' => 'px',
-                    'size' => 0,
+                    'size' => 10,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .sig-timeline-body' => 'padding: {{SIZE}}{{UNIT}};',
@@ -447,10 +447,10 @@ class SIG_Timeline extends \Elementor\Widget_Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%', 'em' ],
                 'default' => [
-                    'top' => 0,
-                    'right' => 50,
-                    'bottom' => 0,
-                    'left' => 0,
+                    'top' => 5,
+                    'right' => 55,
+                    'bottom' => 5,
+                    'left' => 5,
                     'unit' => '%',
                     'isLinked' => false
                 ],
@@ -482,7 +482,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
                 ],
                 'default' => [
                     'unit' => 'px',
-                    'size' => 0,
+                    'size' => 10,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .sig-timeline-body' => 'border-radius:{{SIZE}}{{UNIT}};',
@@ -506,7 +506,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'show_title',
             [
-                'label' => __( 'Show Title', 'elementor' ),
+                'label' => __( 'Show Title', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'sig-elementor-plus' ),
                 'label_off' => __( 'No', 'sig-elementor-plus' ),
@@ -536,6 +536,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
                 'condition' => [
                     'show_title' => 'yes',
                 ],
+                'default' => '#555555',
                 'selectors' => [
                     '{{WRAPPER}} .sig-timeline-title' => 'color:{{VALUE}}',
                 ]
@@ -545,7 +546,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'show_content',
             [
-                'label' => __( 'Show content', 'elementor' ),
+                'label' => __( 'Show content', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'sig-elementor-plus' ),
                 'label_off' => __( 'No', 'sig-elementor-plus' ),
@@ -575,6 +576,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
                 'condition' => [
                     'show_content' => 'yes',
                 ],
+                'default' => '#555555',
                 'selectors' => [
                     '{{WRAPPER}} .sig-timeline-content' => 'color:{{VALUE}}',
                 ]
@@ -584,7 +586,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'show_read_more',
             [
-                'label' => __( 'Show read more', 'elementor' ),
+                'label' => __( 'Show read more', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'sig-elementor-plus' ),
                 'label_off' => __( 'No', 'sig-elementor-plus' ),
@@ -614,6 +616,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
                 'condition' => [
                     'show_read_more' => 'yes',
                 ],
+                'default' => '#555555',
                 'selectors' => [
                     '{{WRAPPER}} .sig-timeline-more' => 'color:{{VALUE}}',
                 ]
@@ -623,7 +626,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'show_date',
             [
-                'label' => __( 'Show day', 'elementor' ),
+                'label' => __( 'Show day', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __( 'Yes', 'sig-elementor-plus' ),
                 'label_off' => __( 'No', 'sig-elementor-plus' ),
@@ -635,7 +638,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'post_date_margin',
             [
-                'label' => __( 'Day margin', 'elementor' ),
+                'label' => __( 'Day margin', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ '%' ],
                 'range' => [
@@ -647,7 +650,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
                 ],
                 'default' => [
                     'unit' => '%',
-                    'size' => 0,
+                    'size' => 30,
                 ],
                 'selectors' => [
                     '(desktop) {{WRAPPER}} .sig-timeline-date' => 'position: absolute; width: 100%;top: 18px;',
@@ -679,6 +682,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
                 'condition' => [
                     'show_date' => 'yes',
                 ],
+                'default' => '#555555',
                 'selectors' => [
                     '{{WRAPPER}} .sig-timeline-date' => 'color:{{VALUE}}',
                 ]

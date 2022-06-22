@@ -59,7 +59,7 @@ if ( ! class_exists( 'SIG_Elementor_Plus' ) ) {
 
     	public function register_my_widgets($widgets_manager) {
 
-            require_once SIG_ELEMENTOR_PLUS_PATH . 'inc/base.php';  //base
+            //require_once SIG_ELEMENTOR_PLUS_PATH . 'inc/base.php';  //base
 
         	$files = glob( SIG_ELEMENTOR_PLUS_PATH . 'widgets/*.php');
 
