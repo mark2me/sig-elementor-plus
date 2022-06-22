@@ -39,8 +39,8 @@ class SIG_Slick extends \Elementor\Widget_Base {
     }
 
     public function get_style_depends() {
-        wp_register_style( 'widget-style-slick', SIG_ELEMENTOR_PLUS_URL.'/inc/slick/slick.css' );
-		wp_register_style( 'widget-style-slick-theme', SIG_ELEMENTOR_PLUS_URL.'/inc/slick/slick-theme.css' );
+        wp_register_style( 'widget-style-slick', SIG_ELEMENTOR_PLUS_URL.'inc/slick/slick.css' );
+		wp_register_style( 'widget-style-slick-theme', SIG_ELEMENTOR_PLUS_URL.'inc/slick/slick-theme.css' );
 
 		return [
 			'widget-style-slick',
