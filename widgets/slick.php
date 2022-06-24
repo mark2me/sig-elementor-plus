@@ -616,14 +616,14 @@ class SIG_Slick extends \Elementor\Widget_Base {
         jQuery(document).ready(function($) {
             $('#<?php echo $id;?> .slick_items').slick({
                 slidesToShow: 1,
-                fade: <?php echo ($settings['isFade']==='yes') ? 'true':'false'; ?>,
-                autoplay: <?php echo ($settings['autoplay']==='yes') ? 'true':'false'; ?>,
-                autoplaySpeed: <?php echo (!empty($settings['autoplaySpeed'])) ? $settings['autoplaySpeed'].'000': 3000 ; ?>,
-                arrows: <?php echo ($settings['arrows']==='yes') ? 'true':'false'; ?>,
-                dots: <?php echo ($settings['dots']==='yes') ? 'true':'false'; ?>,
+                fade: <?php echo ( !empty($settings['isFade']) && $settings['isFade']==='yes' ) ? 'true':'false'; ?>,
+                autoplay: <?php echo ( !empty($settings['autoplay']) && $settings['autoplay']==='yes' ) ? 'true':'false'; ?>,
+                autoplaySpeed: <?php echo ( !empty($settings['autoplaySpeed']) ) ? $settings['autoplaySpeed'].'000': 3000 ; ?>,
+                arrows: <?php echo ( !empty($settings['arrows']) && $settings['arrows']==='yes' ) ? 'true':'false'; ?>,
+                dots: <?php echo ( !empty($settings['dots']) && $settings['dots']==='yes' ) ? 'true':'false'; ?>,
                 appendDots: $('#<?php echo $id;?> .nav-slick-dots'),
-                slidesToShow: <?php echo (!empty($settings['slidesToShow'])) ? $settings['slidesToShow']:1; ?>,
-                slidesToScroll: <?php echo (!empty($settings['slidesToScroll'])) ? $settings['slidesToScroll']: 1; ?>,
+                slidesToShow: <?php echo ( !empty($settings['slidesToShow']) ) ? $settings['slidesToShow']:1; ?>,
+                slidesToScroll: <?php echo ( !empty($settings['slidesToScroll']) ) ? $settings['slidesToScroll']: 1; ?>,
                 <?php
                     if ( !empty($arrows_prev_icon) ) {
                         echo "prevArrow:'{$arrows_prev_icon}',";
@@ -637,11 +637,11 @@ class SIG_Slick extends \Elementor\Widget_Base {
                     {
                         breakpoint: <?php echo $d['value']; ?>,
                         settings: {
-                            fade: <?php echo ($settings['isFade_'.$d['name']]==='yes') ? 'true':'false'; ?>,
-                            arrows: <?php echo ($settings['arrows_'.$d['name']]==='yes') ? 'true':'false'; ?>,
-                            dots: <?php echo ($settings['dots_'.$d['name']]==='yes') ? 'true':'false'; ?>,
-                            slidesToShow: <?php echo (!empty($settings['slidesToShow_'.$d['name']])) ? $settings['slidesToShow_'.$d['name']]:1; ?>,
-                            slidesToScroll: <?php echo (!empty($settings['slidesToScroll_'.$d['name']])) ? $settings['slidesToScroll_'.$d['name']]: 1; ?>,
+                            fade: <?php echo ( !empty($settings['isFade_'.$d['name']]) && $settings['isFade_'.$d['name']]==='yes' ) ? 'true':'false'; ?>,
+                            arrows: <?php echo ( !empty($settings['arrows_'.$d['name']]) && $settings['arrows_'.$d['name']]==='yes' ) ? 'true':'false'; ?>,
+                            dots: <?php echo ( !empty($settings['dots_'.$d['name']]) && $settings['dots_'.$d['name']]==='yes' ) ? 'true':'false'; ?>,
+                            slidesToShow: <?php echo ( !empty($settings['slidesToShow_'.$d['name']]) ) ? $settings['slidesToShow_'.$d['name']]:1; ?>,
+                            slidesToScroll: <?php echo ( !empty($settings['slidesToScroll_'.$d['name']]) ) ? $settings['slidesToScroll_'.$d['name']]: 1; ?>,
                         }
                     },
                     <?php endforeach; ?>
@@ -653,28 +653,29 @@ class SIG_Slick extends \Elementor\Widget_Base {
         <div <?php echo $this->get_render_attribute_string('slick-wrapper'); ?>>
             <div class="slick_items">
         <?php
+        if( !empty($settings['slides']) ){
+		    foreach( $settings['slides'] as $slide ){
+    		    $img_url = $slide['slide_image']['url'];
+    		    $content =  $slide['slide_content'];
 
-		foreach( $settings['slides'] as $slide ){
-    		$img_url = $slide['slide_image']['url'];
-    		$content =  $slide['slide_content'];
+    		    echo '<div class="item elementor-repeater-item-'.$slide['_id'].'" style="background-image:url('.$img_url.');background-repeat: no-repeat;background-position: center;">';
+                if( !empty($slide['slide_link']['url']) ){
+                    echo '<a href="'.$slide['slide_link']['url'].'" '.( !empty($slide['slide_link']['is_external']) ? 'target="_blank"':'' ).'>';
+                }
 
-    		echo '<div class="item elementor-repeater-item-'.$slide['_id'].'" style="background-image:url('.$img_url.');background-repeat: no-repeat;background-position: center;">';
-            if( !empty($slide['slide_link']['url']) ){
-                echo '<a href="'.$slide['slide_link']['url'].'" '.( !empty($slide['slide_link']['is_external']) ? 'target="_blank"':'' ).'>';
-            }
-            print_r($settings['arrows_prev']);
-            if ( 'yes' === $settings['show_content'] ) {
-                echo '<div class="slide_content">'.$content.'</div>';
-            }else{
-                echo '&nbsp;';
-            }
+                if ( !empty($settings['show_content']) && 'yes' === $settings['show_content'] ) {
+                    echo '<div class="slide_content">'.$content.'</div>';
+                }else{
+                    echo '';
+                }
 
-            if( !empty($slide['slide_link']['url']) ){
-                echo '</a>';
-            }
-    		echo '</div>';
+                if( !empty($slide['slide_link']['url']) ){
+                    echo '</a>';
+                }
+    		    echo '</div>';
+		    }
 		}
-		?>
+        ?>
             </div>
             <div class="nav-slick-dots"></div>
         </div>
