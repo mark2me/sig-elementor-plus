@@ -654,25 +654,25 @@ class SIG_Slick extends \Elementor\Widget_Base {
             <div class="slick_items">
         <?php
         if( !empty($settings['slides']) ){
-		    foreach( $settings['slides'] as $slide ){
-    		    $img_url = $slide['slide_image']['url'];
-    		    $content =  $slide['slide_content'];
 
-    		    echo '<div class="item elementor-repeater-item-'.$slide['_id'].'" style="background-image:url('.$img_url.');background-repeat: no-repeat;background-position: center;">';
+		    foreach( $settings['slides'] as $index=>$slide ){
+    		    $img_url = $slide['slide_image']['url'];
+
+    		    echo '<div class="item elementor-repeater-item-'.$slide['_id'].'" data-index="'.($index+1).'" style="background-image:url('.$img_url.');background-repeat: no-repeat;background-position: center;">'.PHP_EOL;
                 if( !empty($slide['slide_link']['url']) ){
                     echo '<a href="'.$slide['slide_link']['url'].'" '.( !empty($slide['slide_link']['is_external']) ? 'target="_blank"':'' ).'>';
                 }
 
-                if ( !empty($settings['show_content']) && 'yes' === $settings['show_content'] ) {
-                    echo '<div class="slide_content">'.$content.'</div>';
+                if ( !empty($slide['show_content']) && 'yes' === $slide['show_content'] ) {
+                    echo '<div class="slide_content">'.$slide['slide_content'].'</div>';
                 }else{
                     echo '';
                 }
 
                 if( !empty($slide['slide_link']['url']) ){
-                    echo '</a>';
+                    echo '</a>'.PHP_EOL;
                 }
-    		    echo '</div>';
+    		    echo '</div>'.PHP_EOL;
 		    }
 		}
         ?>
