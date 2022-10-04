@@ -1,4 +1,4 @@
-=== Sig GA4 Widget ===
+=== Elementor Plus ===
 Contributors: simon_tw
 Tags: elementor, slide, timeline
 Requires at least: 5.9
@@ -23,6 +23,9 @@ e.g.
 1. Activate the plugin through the `Plugins` screen in WordPress.
 
 == Changelog ==
+
+= 1.0.1 =
+* Fixed slick bug.
 
 = 1.0 =
 * Initial Public Release

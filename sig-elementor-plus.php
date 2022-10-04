@@ -4,7 +4,7 @@ Plugin Name: Elementor Plus
 Description: Elementor 功能補強工具包
 Author: Simon Chuang
 Author URI: https://github.com/mark2me
-Version: 1.0
+Version: 1.0.1
 Text Domain: sig-elementor-plus
 Domain Path: /languages
 */
