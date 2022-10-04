@@ -34,6 +34,8 @@ if ( ! class_exists( 'SIG_Elementor_Plus' ) ) {
                 load_plugin_textdomain( 'sig-elementor-plus' , false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
             } );
 
+            add_action( 'plugins_loaded', [ $this, 'load_update_checker' ] );
+
             if ( ! function_exists( 'is_plugin_active' ) ) {
                 require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
             }
@@ -81,6 +83,7 @@ if ( ! class_exists( 'SIG_Elementor_Plus' ) ) {
 
 
     	public function query_posts($settings=[]) {
+
 	        $query_args = [
     	        'post_type'           => ( !empty($settings['post_type']) ) ? $settings['post_type']: 'post',
                 'orderby'             => ( !empty($settings['orderby']) ) ? $settings['orderby']: 'date',
@@ -96,6 +99,7 @@ if ( ! class_exists( 'SIG_Elementor_Plus' ) ) {
 
     	//-------- common fn. ---------
     	static function get_all_post_type_options($option=array()) {
+
             $post_types = get_post_types(array('public' => true), 'objects');
             $options = [];
 
@@ -149,6 +153,16 @@ if ( ! class_exists( 'SIG_Elementor_Plus' ) ) {
             return $query_args;
         }
         //
+
+        public function load_update_checker() {
+
+            require SIG_ELEMENTOR_PLUS_PATH . 'plugin-update-checker/plugin-update-checker.php';
+            $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+                'https://github.com/mark2me/sig-elementor-plus/',
+                __FILE__,
+                'sig-elementor-plus'
+            );
+        }
 
     }
 
