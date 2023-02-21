@@ -1,9 +1,9 @@
 === Elementor Plus ===
 Contributors: simon_tw
-Tags: elementor, slide, timeline
+Tags: elementor, slide, timeline, tabs
 Requires at least: 5.9
-Tested up to: 6.0.2
-Stable tag: 5.6.3
+Tested up to: 6.1.1
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,8 +24,12 @@ e.g.
 
 == Changelog ==
 
+= 1.1.0 =
+* Add Tabs.
+* Update Slick.
+
 = 1.0.1 =
 * Fixed slick bug.
 
 = 1.0 =
-* Initial Public Release
+* Initial Public Release.

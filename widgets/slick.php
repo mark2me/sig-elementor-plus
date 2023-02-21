@@ -19,7 +19,7 @@ class SIG_Slick extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-slider-push';
+		return 'eicon-slides';
 	}
 
 	public function get_categories() {
@@ -31,20 +31,16 @@ class SIG_Slick extends \Elementor\Widget_Base {
 	}
 
     public function get_script_depends() {
-        wp_register_script( 'widget-script-slick', SIG_ELEMENTOR_PLUS_URL.'inc/slick/slick.min.js' , ['jquery'] );
-
 		return [
-			'widget-script-slick'
+			'sig-slick-script'
 		];
     }
 
     public function get_style_depends() {
-        wp_register_style( 'widget-style-slick', SIG_ELEMENTOR_PLUS_URL.'inc/slick/slick.css' );
-		wp_register_style( 'widget-style-slick-theme', SIG_ELEMENTOR_PLUS_URL.'inc/slick/slick-theme.css' );
 
 		return [
-			'widget-style-slick',
-			'widget-style-slick-theme',
+			'sig-slick-style',
+			'sig-slick-theme-style',
 		];
     }
 
@@ -81,6 +77,16 @@ class SIG_Slick extends \Elementor\Widget_Base {
                     'is_external' => true,
                     'nofollow' => true,
                 ],
+            ]
+        );
+
+        $repeater->add_control(
+            'slide_title',
+            [
+                'label' => __( 'Image title', 'sig-elementor-plus' ),
+                'label_block' => true,
+                'type' => Controls_Manager::TEXT,
+                'placeholder' => __( 'Image title', 'elementor' ),
             ]
         );
 
@@ -200,8 +206,8 @@ class SIG_Slick extends \Elementor\Widget_Base {
 				'type' => \Elementor\Controls_Manager::REPEATER,
 				'fields' => $repeater->get_controls(),
 				'default' => [],
-				'show_label' => false
-				//'title_field' => '{{{ slide_title }}}',
+				'show_label' => false,
+				'title_field' => '{{{ slide_title }}}',
 
 			]
 		);
@@ -299,31 +305,6 @@ class SIG_Slick extends \Elementor\Widget_Base {
             ]
         );
 
-
-        $this->add_responsive_control(
-            'arrows',
-            [
-                'label' => esc_html__( 'Show arrows', 'sig-elementor-plus' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => esc_html__( 'Show', 'sig-elementor-plus' ),
-				'label_off' => esc_html__( 'Hide', 'sig-elementor-plus' ),
-				'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
-
-        $this->add_responsive_control(
-            'dots',
-            [
-                'label' => esc_html__( 'Show dots', 'sig-elementor-plus' ),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => esc_html__( 'Show', 'sig-elementor-plus' ),
-				'label_off' => esc_html__( 'Hide', 'sig-elementor-plus' ),
-				'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
-
         $this->add_responsive_control(
             'slidesToShow',
             [
@@ -350,17 +331,27 @@ class SIG_Slick extends \Elementor\Widget_Base {
 
 		$this->end_controls_section(); ///
 
-
+        ///
 		$this->start_controls_section(
 			'section_arrows_style',
 			[
 				'label' => esc_html__( 'Arrows style', 'sig-elementor-plus' ),
 				'tab' => Controls_Manager::TAB_STYLE,
-				'condition' => [
-					'arrows' => 'yes',
-				],
 			]
 		);
+
+        $this->add_responsive_control(
+            'arrows',
+            [
+                'label' => esc_html__( 'Show arrows', 'sig-elementor-plus' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => esc_html__( 'Show', 'sig-elementor-plus' ),
+				'label_off' => esc_html__( 'Hide', 'sig-elementor-plus' ),
+				'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
 
 		$this->add_control(
             'arrows_type',
@@ -413,11 +404,11 @@ class SIG_Slick extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__( 'Arrows size', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px' ],
+                'size_units' => [ 'px'],
                 'range' => [
                     'px' => [
-                        'min' => 15,
-                        'max' => 45,
+                        'min' => 10,
+                        'max' => 100,
                         'step' => 1,
                     ],
                 ],
@@ -439,10 +430,14 @@ class SIG_Slick extends \Elementor\Widget_Base {
                 'type' => Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
-                        'min' => -10,
-                        'max' => 10,
+                        'min' => -15,
+                        'max' => 15,
                         'step' => 0.1,
                     ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 0,
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .slick-prev' => 'left: {{SIZE}}%;',
@@ -454,16 +449,27 @@ class SIG_Slick extends \Elementor\Widget_Base {
 		$this->end_controls_section(); ///
 
 
+        ///
         $this->start_controls_section(
 			'section_dots_style',
 			[
 				'label' => esc_html__( 'Dots style', 'sig-elementor-plus' ),
 				'tab' => Controls_Manager::TAB_STYLE,
-                'condition' => [
-					'dots' => 'yes',
-				],
 			]
 		);
+
+
+        $this->add_responsive_control(
+            'dots',
+            [
+                'label' => esc_html__( 'Show dots', 'sig-elementor-plus' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => esc_html__( 'Show', 'sig-elementor-plus' ),
+				'label_off' => esc_html__( 'Hide', 'sig-elementor-plus' ),
+				'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
 
 		$this->add_control(
             'dots_color',
@@ -471,7 +477,7 @@ class SIG_Slick extends \Elementor\Widget_Base {
                 'label' => esc_html__( 'Dots color', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .slick-dots li button:before' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .slick-dots li button:before' => 'background-color: {{VALUE}};border-radius:50%;',
                 ],
                 'default' => '#eeeeee'
             ]
@@ -482,7 +488,7 @@ class SIG_Slick extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__( 'Dots opacity', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::NUMBER,
-                'min' => 0.3,
+                'min' => 0.05,
                 'max' => 1,
                 'step' => 0.05,
                 'default' => 1,
@@ -499,7 +505,7 @@ class SIG_Slick extends \Elementor\Widget_Base {
                 'label' => esc_html__( 'Dots active color', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .slick-dots li.slick-active button:before' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .slick-dots li.slick-active button:before' => 'background-color: {{VALUE}}; border-radius:50%;',
                 ],
                 'default' => '#999999'
             ]
@@ -510,16 +516,11 @@ class SIG_Slick extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__( 'Dots size', 'sig-elementor-plus' ),
                 'type' => Controls_Manager::SLIDER,
-                'size_units' => [ 'px','em' ],
+                'size_units' => [ 'px' ],
                 'range' => [
                     'px' => [
-                        'min' => 12,
-                        'max' => 30,
-                        'step' => 1,
-                    ],
-                    'em' => [
                         'min' => 1,
-                        'max' => 10,
+                        'max' => 50,
                         'step' => 1,
                     ],
                 ],

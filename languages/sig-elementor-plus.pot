@@ -1,17 +1,17 @@
-# Copyright (C) 2022 github.com/mark2me
+# Copyright (C) 2023 Simon Chuang
 # This file is distributed under the same license as the Elementor Plus plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Elementor Plus 1.0\n"
+"Project-Id-Version: Elementor Plus 1.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/sig-elementor-plus\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-06-22T16:52:38+02:00\n"
+"POT-Creation-Date: 2023-02-21T04:21:04+01:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.4.0\n"
+"X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: sig-elementor-plus\n"
 
 #. Plugin Name of the plugin
@@ -23,14 +23,14 @@ msgid "Elementor 功能補強工具包"
 msgstr ""
 
 #. Author of the plugin
-msgid "github.com/mark2me"
+msgid "Simon Chuang"
 msgstr ""
 
 #. Author URI of the plugin
 msgid "https://github.com/mark2me"
 msgstr ""
 
-#: sig-elementor-plus.php:54
+#: sig-elementor-plus.php:67
 msgid "SIG Elementor Plus"
 msgstr ""
 
@@ -38,209 +38,350 @@ msgstr ""
 msgid "SIG - Slick"
 msgstr ""
 
-#: widgets/slick.php:56
+#: widgets/slick.php:52
 msgid "Select images"
 msgstr ""
 
-#: widgets/slick.php:66
+#: widgets/slick.php:62
+#: widgets/tabs.php:77
 msgid "Image"
 msgstr ""
 
-#: widgets/slick.php:75
+#: widgets/slick.php:71
 msgid "Image link"
 msgstr ""
 
-#: widgets/slick.php:90
+#: widgets/slick.php:86
+msgid "Image title"
+msgstr ""
+
+#: widgets/slick.php:96
 msgid "Add content"
 msgstr ""
 
-#: widgets/slick.php:92
+#: widgets/slick.php:98
 #: widgets/timeline.php:511
-#: widgets/timeline.php:550
-#: widgets/timeline.php:589
-#: widgets/timeline.php:628
+#: widgets/timeline.php:551
+#: widgets/timeline.php:591
+#: widgets/timeline.php:631
 msgid "Yes"
 msgstr ""
 
-#: widgets/slick.php:93
+#: widgets/slick.php:99
 #: widgets/timeline.php:512
-#: widgets/timeline.php:551
-#: widgets/timeline.php:590
-#: widgets/timeline.php:629
+#: widgets/timeline.php:552
+#: widgets/timeline.php:592
+#: widgets/timeline.php:632
 msgid "No"
 msgstr ""
 
-#: widgets/slick.php:101
+#: widgets/slick.php:107
 msgid "Content"
 msgstr ""
 
-#: widgets/slick.php:114
+#: widgets/slick.php:120
 msgid "Horizontal align"
 msgstr ""
 
-#: widgets/slick.php:118
+#: widgets/slick.php:124
 msgid "Left"
 msgstr ""
 
-#: widgets/slick.php:122
-#: widgets/slick.php:150
+#: widgets/slick.php:128
+#: widgets/slick.php:156
+#: widgets/tabs.php:189
+#: widgets/tabs.php:220
 msgid "Center"
 msgstr ""
 
-#: widgets/slick.php:126
+#: widgets/slick.php:132
 msgid "Right"
 msgstr ""
 
-#: widgets/slick.php:142
+#: widgets/slick.php:148
 msgid "Vertical align"
 msgstr ""
 
-#: widgets/slick.php:146
+#: widgets/slick.php:152
+#: widgets/tabs.php:185
+#: widgets/tabs.php:216
 msgid "Start"
 msgstr ""
 
-#: widgets/slick.php:154
+#: widgets/slick.php:160
+#: widgets/tabs.php:193
+#: widgets/tabs.php:224
 msgid "End"
 msgstr ""
 
-#: widgets/slick.php:172
+#: widgets/slick.php:178
 msgid "Content width (%)"
 msgstr ""
 
-#: widgets/slick.php:199
+#: widgets/slick.php:205
 msgid "Slides"
 msgstr ""
 
-#: widgets/slick.php:215
+#: widgets/slick.php:221
 msgid "Setup"
 msgstr ""
 
-#: widgets/slick.php:223
+#: widgets/slick.php:229
 msgid "Change mode"
 msgstr ""
 
-#: widgets/slick.php:226
+#: widgets/slick.php:232
 msgid "slide mode"
 msgstr ""
 
-#: widgets/slick.php:227
+#: widgets/slick.php:233
 msgid "fade mode"
 msgstr ""
 
-#: widgets/slick.php:237
+#: widgets/slick.php:243
 msgid "Auto play"
 msgstr ""
 
-#: widgets/slick.php:239
-#: widgets/slick.php:370
+#: widgets/slick.php:245
+#: widgets/slick.php:361
 msgid "On"
 msgstr ""
 
-#: widgets/slick.php:240
-#: widgets/slick.php:371
+#: widgets/slick.php:246
+#: widgets/slick.php:362
 msgid "Off"
 msgstr ""
 
-#: widgets/slick.php:249
+#: widgets/slick.php:255
 msgid "Auto play speed (s)"
 msgstr ""
 
-#: widgets/slick.php:266
+#: widgets/slick.php:272
 msgid "Image size"
 msgstr ""
 
-#: widgets/slick.php:269
+#: widgets/slick.php:275
+#: widgets/tabs.php:520
 msgid "Cover"
 msgstr ""
 
-#: widgets/slick.php:270
+#: widgets/slick.php:276
+#: widgets/tabs.php:521
 msgid "Contain"
 msgstr ""
 
-#: widgets/slick.php:282
+#: widgets/slick.php:288
 msgid "Aspect ratio"
 msgstr ""
 
-#: widgets/slick.php:306
-msgid "Show arrows"
-msgstr ""
-
-#: widgets/slick.php:308
-#: widgets/slick.php:320
-msgid "Show"
-msgstr ""
-
-#: widgets/slick.php:309
-#: widgets/slick.php:321
-msgid "Hide"
-msgstr ""
-
-#: widgets/slick.php:318
-msgid "Show dots"
-msgstr ""
-
-#: widgets/slick.php:330
+#: widgets/slick.php:311
 msgid "# of slides to show"
 msgstr ""
 
-#: widgets/slick.php:342
+#: widgets/slick.php:323
 msgid "# of slides to scroll"
 msgstr ""
 
-#: widgets/slick.php:357
+#: widgets/slick.php:338
 msgid "Arrows style"
 msgstr ""
 
-#: widgets/slick.php:368
+#: widgets/slick.php:346
+msgid "Show arrows"
+msgstr ""
+
+#: widgets/slick.php:348
+#: widgets/slick.php:467
+msgid "Show"
+msgstr ""
+
+#: widgets/slick.php:349
+#: widgets/slick.php:468
+msgid "Hide"
+msgstr ""
+
+#: widgets/slick.php:359
 msgid "Custom arrows icon"
 msgstr ""
 
-#: widgets/slick.php:380
+#: widgets/slick.php:371
 msgid "Select icon for previous arrow"
 msgstr ""
 
-#: widgets/slick.php:391
+#: widgets/slick.php:382
 msgid "Select icon for next arrow"
 msgstr ""
 
-#: widgets/slick.php:402
+#: widgets/slick.php:393
 msgid "Arrows color"
 msgstr ""
 
-#: widgets/slick.php:414
+#: widgets/slick.php:405
 msgid "Arrows size"
 msgstr ""
 
-#: widgets/slick.php:438
+#: widgets/slick.php:429
 msgid "Arrows location (%)"
 msgstr ""
 
-#: widgets/slick.php:460
+#: widgets/slick.php:456
 msgid "Dots style"
 msgstr ""
 
-#: widgets/slick.php:471
+#: widgets/slick.php:465
+msgid "Show dots"
+msgstr ""
+
+#: widgets/slick.php:477
 msgid "Dots color"
 msgstr ""
 
-#: widgets/slick.php:483
+#: widgets/slick.php:489
 msgid "Dots opacity"
 msgstr ""
 
-#: widgets/slick.php:499
+#: widgets/slick.php:505
 msgid "Dots active color"
 msgstr ""
 
-#: widgets/slick.php:511
+#: widgets/slick.php:517
 msgid "Dots size"
 msgstr ""
 
-#: widgets/slick.php:542
+#: widgets/slick.php:543
 msgid "Dots location"
 msgstr ""
 
-#: widgets/slick.php:566
+#: widgets/slick.php:567
 msgid "Dots margin"
+msgstr ""
+
+#: widgets/tabs.php:33
+msgid "SIG - Tabs"
+msgstr ""
+
+#: widgets/tabs.php:63
+#: widgets/tabs.php:244
+msgid "Tabs"
+msgstr ""
+
+#: widgets/tabs.php:72
+msgid "Tab type"
+msgstr ""
+
+#: widgets/tabs.php:76
+msgid "Text"
+msgstr ""
+
+#: widgets/tabs.php:85
+#: widgets/tabs.php:87
+#: widgets/tabs.php:127
+#: widgets/tabs.php:131
+#: widgets/tabs.php:331
+msgid "Tab title"
+msgstr ""
+
+#: widgets/tabs.php:100
+#: widgets/tabs.php:402
+msgid "Tab image"
+msgstr ""
+
+#: widgets/tabs.php:112
+#: widgets/tabs.php:542
+msgid "Tab content"
+msgstr ""
+
+#: widgets/tabs.php:113
+#: widgets/tabs.php:128
+#: widgets/tabs.php:132
+msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
+msgstr ""
+
+#: widgets/tabs.php:122
+msgid "Tabs items"
+msgstr ""
+
+#: widgets/tabs.php:143
+msgid "Tabs max width"
+msgstr ""
+
+#: widgets/tabs.php:165
+msgid "Tab position"
+msgstr ""
+
+#: widgets/tabs.php:169
+msgid "Horizontal"
+msgstr ""
+
+#: widgets/tabs.php:170
+msgid "Vertical"
+msgstr ""
+
+#: widgets/tabs.php:181
+#: widgets/tabs.php:212
+msgid "Tab alignment"
+msgstr ""
+
+#: widgets/tabs.php:197
+#: widgets/tabs.php:228
+msgid "Justified"
+msgstr ""
+
+#: widgets/tabs.php:252
+msgid "Navigation width"
+msgstr ""
+
+#: widgets/tabs.php:277
+msgid "Border width"
+msgstr ""
+
+#: widgets/tabs.php:304
+msgid "Border color"
+msgstr ""
+
+#: widgets/tabs.php:318
+#: widgets/timeline.php:307
+msgid "Background color"
+msgstr ""
+
+#: widgets/tabs.php:340
+#: widgets/tabs.php:551
+#: widgets/timeline.php:292
+msgid "Color"
+msgstr ""
+
+#: widgets/tabs.php:355
+msgid "Active Color"
+msgstr ""
+
+#: widgets/tabs.php:389
+#: widgets/tabs.php:584
+msgid "Padding"
+msgstr ""
+
+#: widgets/tabs.php:411
+#: widgets/timeline.php:269
+msgid "Width"
+msgstr ""
+
+#: widgets/tabs.php:446
+msgid "Max width"
+msgstr ""
+
+#: widgets/tabs.php:481
+msgid "Height"
+msgstr ""
+
+#: widgets/tabs.php:512
+msgid "Object Fit"
+msgstr ""
+
+#: widgets/tabs.php:518
+msgid "Default"
+msgstr ""
+
+#: widgets/tabs.php:519
+msgid "Fill"
 msgstr ""
 
 #: widgets/timeline.php:17
@@ -339,18 +480,6 @@ msgstr ""
 msgid "Icon style"
 msgstr ""
 
-#: widgets/timeline.php:269
-msgid "Width"
-msgstr ""
-
-#: widgets/timeline.php:292
-msgid "Color"
-msgstr ""
-
-#: widgets/timeline.php:307
-msgid "Background color"
-msgstr ""
-
 #: widgets/timeline.php:319
 msgid "Size"
 msgstr ""
@@ -399,42 +528,42 @@ msgstr ""
 msgid "Title color"
 msgstr ""
 
-#: widgets/timeline.php:548
+#: widgets/timeline.php:549
 msgid "Show content"
 msgstr ""
 
-#: widgets/timeline.php:560
+#: widgets/timeline.php:561
 msgid "Content style"
 msgstr ""
 
-#: widgets/timeline.php:572
+#: widgets/timeline.php:573
 msgid "Content color"
 msgstr ""
 
-#: widgets/timeline.php:587
+#: widgets/timeline.php:589
 msgid "Show read more"
 msgstr ""
 
-#: widgets/timeline.php:599
+#: widgets/timeline.php:601
 msgid "Read more style"
 msgstr ""
 
-#: widgets/timeline.php:611
+#: widgets/timeline.php:613
 msgid "Read more color"
 msgstr ""
 
-#: widgets/timeline.php:626
+#: widgets/timeline.php:629
 msgid "Show day"
 msgstr ""
 
-#: widgets/timeline.php:638
+#: widgets/timeline.php:641
 msgid "Day margin"
 msgstr ""
 
-#: widgets/timeline.php:664
+#: widgets/timeline.php:667
 msgid "Date style"
 msgstr ""
 
-#: widgets/timeline.php:676
+#: widgets/timeline.php:679
 msgid "Date color"
 msgstr ""

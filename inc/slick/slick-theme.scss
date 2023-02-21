@@ -177,6 +177,9 @@ button.slick-next {
                 }
             }
             &:before {
+                content:"";
+                display: inline-block;
+                /*
                 content: $slick-dot-character;
                 font-family: $slick-font-family;
                 font-size: $slick-dot-size;
@@ -184,6 +187,7 @@ button.slick-next {
                 color: $slick-dot-color;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
+                */
             }
         }
         &.slick-active button:before {

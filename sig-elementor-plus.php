@@ -4,7 +4,7 @@ Plugin Name: Elementor Plus
 Description: Elementor 功能補強工具包
 Author: Simon Chuang
 Author URI: https://github.com/mark2me
-Version: 1.0.1
+Version: 1.1.0
 Text Domain: sig-elementor-plus
 Domain Path: /languages
 */
@@ -45,6 +45,17 @@ if ( ! class_exists( 'SIG_Elementor_Plus' ) ) {
                 add_action( 'elementor/widgets/register', [ $this, 'register_my_widgets' ] );
                 add_action( 'elementor/controls/register', [ $this, 'register_my_controls' ] );
             }
+
+            add_action( 'wp_enqueue_scripts', function(){
+
+                wp_register_style( 'sig-slick-style', SIG_ELEMENTOR_PLUS_URL.'inc/slick/slick.css' );
+                wp_register_style( 'sig-slick-theme-style', SIG_ELEMENTOR_PLUS_URL.'inc/slick/slick-theme.css' );
+                wp_register_script( 'sig-slick-script', SIG_ELEMENTOR_PLUS_URL.'inc/slick/slick.min.js' , ['jquery'] );
+
+                wp_register_style( 'sig-tabs-style', SIG_ELEMENTOR_PLUS_URL.'inc/tabs/tabs.css' );
+                wp_register_script( 'sig-tabs-script', SIG_ELEMENTOR_PLUS_URL.'inc/tabs/tabs.js' , ['jquery'] );
+            });
+
     	}
 
 

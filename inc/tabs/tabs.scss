@@ -1,0 +1,99 @@
+.elementor-widget-sig-tabs{
+
+    .sig-tabs-wrapper{
+
+        .sig-tabs-title{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+
+            .sig-tab-title{
+                cursor: pointer;
+                position: relative;
+            }
+        }
+
+        .sig-tab-title,
+        .sig-tabs-content{
+            border-style: solid;
+            border-color: transparent;
+        }
+
+        .sig-tab-content{
+            display: none;
+            &.active{
+                display: block;
+            }
+        }
+
+    }
+
+
+    &.sig-tabs-view-vertical{
+        .sig-tabs-wrapper{
+            display: flex;
+        }
+    }
+
+    &.sig-tabs-view-horizontal{
+        .sig-tabs-wrapper{
+            .sig-tabs-title{
+                display: flex;
+            }
+            .sig-tab-title{
+                border-bottom-style: none;
+            }
+            .sig-tab-title.active{
+                &:before{
+                    display: block;
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    height: 0;
+                    width: 999em;
+                    right: 100%;
+                    border-bottom-style: solid;
+                }
+                &:after{
+                    display: block;
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    height: 0;
+                    width: 999em;
+                    left: 100%;
+                    border-bottom-style: solid;
+                }
+
+            }
+            .sig-tabs-content{
+                border-top-style: none;
+            }
+        }
+    }
+
+    &.sig-tabs-view-horizontal.sig-tabs-alignment-center{
+        .sig-tabs-wrapper{
+            .sig-tabs-title{
+                justify-content: center;
+            }
+        }
+    }
+
+    &.sig-tabs-view-horizontal.sig-tabs-alignment-end{
+        .sig-tabs-wrapper{
+            .sig-tabs-title{
+                justify-content: flex-end;
+            }
+        }
+    }
+    &.sig-tabs-view-horizontal.sig-tabs-alignment-stretch{
+        .sig-tabs-wrapper{
+            .sig-tab-title{
+                width: 100%;
+            }
+        }
+    }
+
+}

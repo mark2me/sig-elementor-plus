@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: ElementorPlus 1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/sig-elementor-"
 "plus\n"
-"POT-Creation-Date: 2022-06-22T16:52:38+02:00\n"
-"PO-Revision-Date: 2022-06-22 22:53+0800\n"
+"POT-Creation-Date: 2023-02-21T04:21:04+01:00\n"
+"PO-Revision-Date: 2023-02-21 11:39+0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_TW\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Domain: sig-elementor-plus\n"
 
 #. Plugin Name of the plugin
@@ -26,218 +26,338 @@ msgid "Elementor 功能補強工具包"
 msgstr ""
 
 #. Author of the plugin
-msgid "github.com/mark2me"
+msgid "Simon Chuang"
 msgstr ""
 
 #. Author URI of the plugin
 msgid "https://github.com/mark2me"
 msgstr ""
 
-#: sig-elementor-plus.php:54
+#: sig-elementor-plus.php:67
 msgid "SIG Elementor Plus"
 msgstr ""
 
 #: widgets/slick.php:18
 msgid "SIG - Slick"
-msgstr ""
+msgstr "SIG - Slick 輪播"
 
-#: widgets/slick.php:56
+#: widgets/slick.php:52
 msgid "Select images"
 msgstr "選擇圖片"
 
-#: widgets/slick.php:66
+#: widgets/slick.php:62 widgets/tabs.php:77
 msgid "Image"
 msgstr "圖片"
 
-#: widgets/slick.php:75
+#: widgets/slick.php:71
 msgid "Image link"
 msgstr "圖片連結"
 
-#: widgets/slick.php:90
+#: widgets/slick.php:86
+msgid "Image title"
+msgstr "圖片標題"
+
+#: widgets/slick.php:96
 msgid "Add content"
 msgstr "新增內容"
 
-#: widgets/slick.php:92 widgets/timeline.php:511 widgets/timeline.php:550
-#: widgets/timeline.php:589 widgets/timeline.php:628
+#: widgets/slick.php:98 widgets/timeline.php:511 widgets/timeline.php:551
+#: widgets/timeline.php:591 widgets/timeline.php:631
 msgid "Yes"
 msgstr "是"
 
-#: widgets/slick.php:93 widgets/timeline.php:512 widgets/timeline.php:551
-#: widgets/timeline.php:590 widgets/timeline.php:629
+#: widgets/slick.php:99 widgets/timeline.php:512 widgets/timeline.php:552
+#: widgets/timeline.php:592 widgets/timeline.php:632
 msgid "No"
 msgstr "否"
 
-#: widgets/slick.php:101
+#: widgets/slick.php:107
 msgid "Content"
 msgstr "內容"
 
-#: widgets/slick.php:114
+#: widgets/slick.php:120
 msgid "Horizontal align"
 msgstr "水平對齊"
 
-#: widgets/slick.php:118
+#: widgets/slick.php:124
 msgid "Left"
 msgstr "置左"
 
-#: widgets/slick.php:122 widgets/slick.php:150
+#: widgets/slick.php:128 widgets/slick.php:156 widgets/tabs.php:189
+#: widgets/tabs.php:220
 msgid "Center"
 msgstr "置中"
 
-#: widgets/slick.php:126
+#: widgets/slick.php:132
 msgid "Right"
 msgstr "置右"
 
-#: widgets/slick.php:142
+#: widgets/slick.php:148
 msgid "Vertical align"
 msgstr "垂直對齊"
 
-#: widgets/slick.php:146
+#: widgets/slick.php:152 widgets/tabs.php:185 widgets/tabs.php:216
 msgid "Start"
 msgstr "置頂"
 
-#: widgets/slick.php:154
+#: widgets/slick.php:160 widgets/tabs.php:193 widgets/tabs.php:224
 msgid "End"
 msgstr "置底"
 
-#: widgets/slick.php:172
+#: widgets/slick.php:178
 msgid "Content width (%)"
 msgstr "內容寬度(%)"
 
-#: widgets/slick.php:199
+#: widgets/slick.php:205
 msgid "Slides"
 msgstr ""
 
-#: widgets/slick.php:215
+#: widgets/slick.php:221
 msgid "Setup"
 msgstr "設定"
 
-#: widgets/slick.php:223
+#: widgets/slick.php:229
 msgid "Change mode"
 msgstr "變換的樣式"
 
-#: widgets/slick.php:226
+#: widgets/slick.php:232
 msgid "slide mode"
 msgstr "滑動"
 
-#: widgets/slick.php:227
+#: widgets/slick.php:233
 msgid "fade mode"
 msgstr "淡入淡出"
 
-#: widgets/slick.php:237
+#: widgets/slick.php:243
 msgid "Auto play"
 msgstr "自動播放"
 
-#: widgets/slick.php:239 widgets/slick.php:370
+#: widgets/slick.php:245 widgets/slick.php:361
 msgid "On"
 msgstr "開"
 
-#: widgets/slick.php:240 widgets/slick.php:371
+#: widgets/slick.php:246 widgets/slick.php:362
 msgid "Off"
 msgstr "關"
 
-#: widgets/slick.php:249
+#: widgets/slick.php:255
 msgid "Auto play speed (s)"
 msgstr "自動播放速度(秒)"
 
-#: widgets/slick.php:266
+#: widgets/slick.php:272
 msgid "Image size"
 msgstr "圖片大小"
 
-#: widgets/slick.php:269
+#: widgets/slick.php:275 widgets/tabs.php:520
 msgid "Cover"
 msgstr "完整填充"
 
-#: widgets/slick.php:270
+#: widgets/slick.php:276 widgets/tabs.php:521
 msgid "Contain"
 msgstr "完整圖片"
 
-#: widgets/slick.php:282
+#: widgets/slick.php:288
 msgid "Aspect ratio"
 msgstr "圖片寬長比例"
 
-#: widgets/slick.php:306
-msgid "Show arrows"
-msgstr "顯示方向鍵"
-
-#: widgets/slick.php:308 widgets/slick.php:320
-msgid "Show"
-msgstr "顯示"
-
-#: widgets/slick.php:309 widgets/slick.php:321
-msgid "Hide"
-msgstr "隱藏"
-
-#: widgets/slick.php:318
-msgid "Show dots"
-msgstr "顯示導航點"
-
-#: widgets/slick.php:330
+#: widgets/slick.php:311
 msgid "# of slides to show"
 msgstr "一次顯示幾張圖片"
 
-#: widgets/slick.php:342
+#: widgets/slick.php:323
 msgid "# of slides to scroll"
 msgstr "一次滾動幾張圖片"
 
-#: widgets/slick.php:357
+#: widgets/slick.php:338
 msgid "Arrows style"
 msgstr "方向鍵樣式"
 
-#: widgets/slick.php:368
+#: widgets/slick.php:346
+msgid "Show arrows"
+msgstr "顯示方向鍵"
+
+#: widgets/slick.php:348 widgets/slick.php:467
+msgid "Show"
+msgstr "顯示"
+
+#: widgets/slick.php:349 widgets/slick.php:468
+msgid "Hide"
+msgstr "隱藏"
+
+#: widgets/slick.php:359
 msgid "Custom arrows icon"
 msgstr "自訂方向鍵圖示"
 
-#: widgets/slick.php:380
+#: widgets/slick.php:371
 msgid "Select icon for previous arrow"
 msgstr "選擇圖示：上一個"
 
-#: widgets/slick.php:391
+#: widgets/slick.php:382
 msgid "Select icon for next arrow"
 msgstr "選擇圖示：下一個"
 
-#: widgets/slick.php:402
+#: widgets/slick.php:393
 msgid "Arrows color"
 msgstr "方向鍵顏色"
 
-#: widgets/slick.php:414
+#: widgets/slick.php:405
 msgid "Arrows size"
 msgstr "方向鍵大小"
 
-#: widgets/slick.php:438
+#: widgets/slick.php:429
 msgid "Arrows location (%)"
 msgstr "方向鍵位置(%)"
 
-#: widgets/slick.php:460
+#: widgets/slick.php:456
 msgid "Dots style"
 msgstr "導航點樣式"
 
-#: widgets/slick.php:471
+#: widgets/slick.php:465
+msgid "Show dots"
+msgstr "顯示導航點"
+
+#: widgets/slick.php:477
 msgid "Dots color"
 msgstr "導航點顏色"
 
-#: widgets/slick.php:483
+#: widgets/slick.php:489
 msgid "Dots opacity"
 msgstr "導航點透明度"
 
-#: widgets/slick.php:499
+#: widgets/slick.php:505
 msgid "Dots active color"
 msgstr "本圖導航點顏色"
 
-#: widgets/slick.php:511
+#: widgets/slick.php:517
 msgid "Dots size"
 msgstr "導航點大小"
 
-#: widgets/slick.php:542
+#: widgets/slick.php:543
 msgid "Dots location"
 msgstr "導航點位置"
 
-#: widgets/slick.php:566
+#: widgets/slick.php:567
 msgid "Dots margin"
 msgstr "導航點邊界"
 
+#: widgets/tabs.php:33
+msgid "SIG - Tabs"
+msgstr "SIG - 分頁"
+
+#: widgets/tabs.php:63 widgets/tabs.php:244
+msgid "Tabs"
+msgstr "分頁"
+
+#: widgets/tabs.php:72
+msgid "Tab type"
+msgstr "標籤種類"
+
+#: widgets/tabs.php:76
+msgid "Text"
+msgstr "文字"
+
+#: widgets/tabs.php:85 widgets/tabs.php:87 widgets/tabs.php:127
+#: widgets/tabs.php:131 widgets/tabs.php:331
+msgid "Tab title"
+msgstr "文字標籤"
+
+#: widgets/tabs.php:100 widgets/tabs.php:402
+msgid "Tab image"
+msgstr "圖片標籤"
+
+#: widgets/tabs.php:112 widgets/tabs.php:542
+msgid "Tab content"
+msgstr "分頁內容"
+
+#: widgets/tabs.php:113 widgets/tabs.php:128 widgets/tabs.php:132
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, "
+"luctus nec ullamcorper mattis, pulvinar dapibus leo."
+msgstr "這是一段無意義的替代文字。"
+
+#: widgets/tabs.php:122
+msgid "Tabs items"
+msgstr "分頁項目"
+
+#: widgets/tabs.php:143
+msgid "Tabs max width"
+msgstr "最大寬度"
+
+#: widgets/tabs.php:165
+msgid "Tab position"
+msgstr "標籤位置"
+
+#: widgets/tabs.php:169
+msgid "Horizontal"
+msgstr "水平"
+
+#: widgets/tabs.php:170
+msgid "Vertical"
+msgstr "垂直"
+
+#: widgets/tabs.php:181 widgets/tabs.php:212
+msgid "Tab alignment"
+msgstr "標籤對齊"
+
+#: widgets/tabs.php:197 widgets/tabs.php:228
+msgid "Justified"
+msgstr "分散對齊"
+
+#: widgets/tabs.php:252
+msgid "Navigation width"
+msgstr "標籤的寬度"
+
+#: widgets/tabs.php:277
+msgid "Border width"
+msgstr "框線寬度"
+
+#: widgets/tabs.php:304
+msgid "Border color"
+msgstr "框線顏色"
+
+#: widgets/tabs.php:318 widgets/timeline.php:307
+msgid "Background color"
+msgstr "背景色"
+
+#: widgets/tabs.php:340 widgets/tabs.php:551 widgets/timeline.php:292
+msgid "Color"
+msgstr "顏色"
+
+#: widgets/tabs.php:355
+msgid "Active Color"
+msgstr "選定項目顏色"
+
+#: widgets/tabs.php:389 widgets/tabs.php:584
+msgid "Padding"
+msgstr "間距"
+
+#: widgets/tabs.php:411 widgets/timeline.php:269
+msgid "Width"
+msgstr "寬度"
+
+#: widgets/tabs.php:446
+msgid "Max width"
+msgstr "最大寬度"
+
+#: widgets/tabs.php:481
+msgid "Height"
+msgstr "高度"
+
+#: widgets/tabs.php:512
+msgid "Object Fit"
+msgstr ""
+
+#: widgets/tabs.php:518
+msgid "Default"
+msgstr "預設"
+
+#: widgets/tabs.php:519
+msgid "Fill"
+msgstr ""
+
 #: widgets/timeline.php:17
 msgid "SIG - Timeline"
-msgstr ""
+msgstr "SIG - 時間軸"
 
 #: widgets/timeline.php:38
 msgid "Post"
@@ -253,7 +373,7 @@ msgstr "文章ID"
 
 #: widgets/timeline.php:58
 msgid "Provide a comma separated list of Post IDs to display in the grid."
-msgstr "提供一個逗號分隔的文章 ID 清單作為篩選的依據"
+msgstr "提供一個逗號分隔的文章 ID 清單作為篩選的依據。"
 
 #: widgets/timeline.php:70
 msgid "Max show words"
@@ -284,8 +404,6 @@ msgid "Icon"
 msgstr "圖示"
 
 #: widgets/timeline.php:117
-#, fuzzy
-#| msgid "Icon style"
 msgid "Icon type"
 msgstr "圖示樣式"
 
@@ -332,18 +450,6 @@ msgstr "線的顏色"
 #: widgets/timeline.php:260
 msgid "Icon style"
 msgstr "圖示樣式"
-
-#: widgets/timeline.php:269
-msgid "Width"
-msgstr "寬度"
-
-#: widgets/timeline.php:292
-msgid "Color"
-msgstr "顏色"
-
-#: widgets/timeline.php:307
-msgid "Background color"
-msgstr "背景色"
 
 #: widgets/timeline.php:319
 msgid "Size"
@@ -393,42 +499,59 @@ msgstr "標題樣式"
 msgid "Title color"
 msgstr "標題顏色"
 
-#: widgets/timeline.php:548
+#: widgets/timeline.php:549
 msgid "Show content"
 msgstr "顯示內容"
 
-#: widgets/timeline.php:560
+#: widgets/timeline.php:561
 msgid "Content style"
 msgstr "文章內容樣式"
 
-#: widgets/timeline.php:572
+#: widgets/timeline.php:573
 msgid "Content color"
 msgstr "文章內容顏色"
 
-#: widgets/timeline.php:587
+#: widgets/timeline.php:589
 msgid "Show read more"
 msgstr "顯示繼續閱讀"
 
-#: widgets/timeline.php:599
+#: widgets/timeline.php:601
 msgid "Read more style"
 msgstr "繼續閱讀樣式"
 
-#: widgets/timeline.php:611
+#: widgets/timeline.php:613
 msgid "Read more color"
 msgstr "繼續閱讀顏色"
 
-#: widgets/timeline.php:626
+#: widgets/timeline.php:629
 msgid "Show day"
 msgstr "顯示日期"
 
-#: widgets/timeline.php:638
+#: widgets/timeline.php:641
 msgid "Day margin"
 msgstr "日期邊界"
 
-#: widgets/timeline.php:664
+#: widgets/timeline.php:667
 msgid "Date style"
 msgstr "日期樣式"
 
-#: widgets/timeline.php:676
+#: widgets/timeline.php:679
 msgid "Date color"
 msgstr "日期顏色"
+
+#~ msgid "Title or Image"
+#~ msgstr "標題或圖片"
+
+#~ msgid "Title"
+#~ msgstr "標題"
+
+#~ msgid "Tab #1"
+#~ msgstr "分頁 #1"
+
+#~ msgid "Tab #2"
+#~ msgstr "分頁 #2"
+
+#, fuzzy
+#~| msgid "Background color"
+#~ msgid "Background Color"
+#~ msgstr "背景色"

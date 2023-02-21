@@ -18,7 +18,7 @@ class SIG_Timeline extends \Elementor\Widget_Base {
     }
 
     public function get_icon() {
-        return 'eicon-slider-push';
+        return 'eicon-time-line';
     }
 
     public function get_categories() {
