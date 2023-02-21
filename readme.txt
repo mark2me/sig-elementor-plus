@@ -7,7 +7,7 @@ Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-第三方 Elementor 功能補強工具包
+第三方 Elementor 功能補強工具包，改善或增進現有小工具的功能。現有：輪播圖、時間軸、分頁等小工具。
 
 == Description ==
 
